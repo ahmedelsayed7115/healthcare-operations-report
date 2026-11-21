@@ -1,6 +1,6 @@
 # Healthcare Operations & 30-Day Readmission Executive Report
 
-> **Source Workbook:** `Healthcare_Operations_V2.twbx` (`Healthcare Operations & Readmission V1`)  
+> **Source Workbook:** [`Healthcare_Operations_Readmission_Dashboard.twbx`](Healthcare_Operations_Readmission_Dashboard.twbx)  
 > **Scope:** 6,301 acute encounters across 941 unique Massachusetts patients (Full Historical Scope: 1923–2020; Operational Window: 2011–2020, n = 3,814)  
 > **Live Interactive Dashboard:** [View on GitHub Pages](https://ahmedelsayed7115.github.io/healthcare-operations-report/)
 
@@ -161,15 +161,16 @@ All metrics are computed directly from the packaged workbook's underlying tables
 
 ```text
 healthcare-operations-report/
-├── README.md                          # Full Executive Report (this document)
-├── index.html                         # Interactive Web Dashboard (GitHub Pages)
+├── README.md                                        # Full Executive Report (this document)
+├── index.html                                       # Interactive Web Dashboard (GitHub Pages)
+├── Healthcare_Operations_Readmission_Dashboard.twbx # Packaged Tableau Workbook
 ├── assets/
-│   ├── view1_annual_trend.svg         # Annual Volume & Readmission Trend (2011–2020)
-│   ├── view2_clinical_drivers.svg     # Top 10 Clinical Drivers of Readmissions
-│   ├── view3_risk_heatmap.svg         # Risk Tier × Age Cohort Heatmap
-│   └── view4_payer_quadrant.svg       # Payer Coverage vs. Readmission Quadrant
+│   ├── view1_annual_trend.svg                       # Annual Volume & Readmission Trend (2011–2020)
+│   ├── view2_clinical_drivers.svg                   # Top 10 Clinical Drivers of Readmissions
+│   ├── view3_risk_heatmap.svg                       # Risk Tier × Age Cohort Heatmap
+│   └── view4_payer_quadrant.svg                     # Payer Coverage vs. Readmission Quadrant
 ├── data/
-│   └── analysis_summary.json          # Exact computed metrics for full & 2011–2020 scopes
+│   └── analysis_summary.json                        # Exact computed metrics for full & 2011–2020 scopes
 └── scripts/
-    └── generate_report_assets.py      # Reproducible SVG & metrics generator
+    └── generate_report_assets.py                    # Reproducible SVG & metrics generator
 ```
