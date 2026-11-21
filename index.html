@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Healthcare Operations &amp; 30-Day Readmission Executive Report</title>
+<style>
+  :root {
+    --bg: #f8fafc;
+    --card: #ffffff;
+    --border: #e2e8f0;
+    --text: #0f172a;
+    --muted: #64748b;
+    --crimson: #dc2626;
+    --crimson-soft: #fef2f2;
+    --teal: #0f766e;
+    --teal-soft: #f0fdfa;
+    --amber: #d97706;
+    --amber-soft: #fffbeb;
+    --blue: #2563eb;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.55;
+  }
+  header {
+    background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+    color: #fff;
+    padding: 2.25rem 1.5rem;
+    border-bottom: 4px solid var(--crimson);
+  }
+  .container { max-width: 1120px; margin: 0 auto; padding: 0 1.25rem; }
+  .header-row {
+    display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 1rem;
+  }
+  header h1 { font-size: 1.75rem; font-weight: 800; letter-spacing: -0.02em; }
+  header p { color: #cbd5e1; font-size: 0.95rem; margin-top: 0.35rem; }
+  .toggle-group {
+    display: inline-flex; background: rgba(255,255,255,0.1); border-radius: 10px; padding: 4px;
+    border: 1px solid rgba(255,255,255,0.18);
+  }
+  .toggle-btn {
+    border: none; background: transparent; color: #cbd5e1; font-weight: 600; font-size: 0.85rem;
+    padding: 0.5rem 0.95rem; border-radius: 7px; cursor: pointer; transition: all 0.15s ease;
+  }
+  .toggle-btn.active { background: #ffffff; color: #0f172a; box-shadow: 0 1px 3px rgba(0,0,0,0.2); }
+  main { padding: 1.75rem 0 3.5rem; }
+  .kpi-grid {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: 1rem;
+    margin-bottom: 1.75rem;
+  }
+  .kpi-card {
+    background: var(--card); border: 1px solid var(--border); border-radius: 12px; padding: 1.25rem;
+    box-shadow: 0 1px 2px rgba(15,23,42,0.04); position: relative; overflow: hidden;
+  }
+  .kpi-card::before {
+    content: ""; position: absolute; top: 0; left: 0; right: 0; height: 4px; background: var(--crimson);
+  }
+  .kpi-card.ok::before { background: var(--teal); }
+  .kpi-card.warn::before { background: var(--amber); }
+  .kpi-label { font-size: 0.75rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; color: var(--muted); }
+  .kpi-val { font-size: 2rem; font-weight: 800; margin: 0.35rem 0 0.25rem; letter-spacing: -0.02em; }
+  .kpi-sub { font-size: 0.82rem; color: var(--muted); }
+  .badge {
+    display: inline-block; font-size: 0.72rem; font-weight: 700; padding: 2px 8px; border-radius: 999px;
+    margin-top: 0.5rem;
+  }
+  .badge.bad { background: var(--crimson-soft); color: var(--crimson); }
+  .badge.good { background: var(--teal-soft); color: var(--teal); }
+  .badge.warn { background: var(--amber-soft); color: var(--amber); }
+  section {
+    background: var(--card); border: 1px solid var(--border); border-radius: 12px; padding: 1.5rem;
+    margin-bottom: 1.5rem; box-shadow: 0 1px 2px rgba(15,23,42,0.04);
+  }
+  section h2 { font-size: 1.2rem; font-weight: 700; margin-bottom: 0.35rem; }
+  .sec-sub { font-size: 0.88rem; color: var(--muted); margin-bottom: 1rem; }
+  .chart-wrap { width: 100%; overflow-x: auto; margin: 0.75rem 0 1rem; }
+  .chart-wrap img { width: 100%; max-width: 920px; height: auto; display: block; margin: 0 auto; }
+  table { width: 100%; border-collapse: collapse; font-size: 0.87rem; margin-top: 0.5rem; }
+  th, td { padding: 0.65rem 0.75rem; border-bottom: 1px solid var(--border); text-align: left; }
+  th { font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.04em; color: var(--muted); background: #f8fafc; }
+  td.num, th.num { text-align: right; font-variant-numeric: tabular-nums; }
+  tr:hover td { background: #f8fafc; }
+  .rec-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1rem; }
+  .rec-card {
+    border: 1px solid var(--border); border-radius: 10px; padding: 1rem 1.15rem; background: #fcfcfd;
+  }
+  .rec-card h3 { font-size: 0.95rem; font-weight: 700; margin: 0.35rem 0; }
+  .rec-card p { font-size: 0.85rem; color: #334155; }
+  footer { text-align: center; color: var(--muted); font-size: 0.82rem; padding: 1.5rem 0 2.5rem; }
+  footer a { color: var(--blue); text-decoration: none; }
+</style>
+</head>
+<body>
+<header>
+  <div class="container header-row">
+    <div>
+      <h1>Healthcare Operations &amp; 30-Day Readmission Report</h1>
+      <p>Executive Analytics from <strong>Healthcare_Operations_V2.twbx</strong> • Massachusetts Acute Care Network</p>
+    </div>
+    <div class="toggle-group" role="tablist" aria-label="Dataset Scope">
+      <button class="toggle-btn active" id="btn-all" onclick="setScope('all')">Full Scope (n=6,301)</button>
+      <button class="toggle-btn" id="btn-op" onclick="setScope('op')">2011–2020 Window (n=3,814)</button>
+    </div>
+  </div>
+</header>
+
+<main class="container">
+  <div class="kpi-grid">
+    <div class="kpi-card">
+      <div class="kpi-label">30-Day Inpatient Readmission Rate</div>
+      <div class="kpi-val" id="kpi-readm">23.88%</div>
+      <div class="kpi-sub" id="kpi-readm-sub">439 readmissions / 1,838 inpatient stays</div>
+      <span class="badge bad" id="kpi-readm-badge">+8.88 pts vs. 15.0% goal</span>
+    </div>
+    <div class="kpi-card ok">
+      <div class="kpi-label">Clean O/E Length of Stay Ratio</div>
+      <div class="kpi-val" id="kpi-oe">1.00</div>
+      <div class="kpi-sub" id="kpi-oe-sub">1.09d clean avg LOS (18.04d raw; 5 outliers)</div>
+      <span class="badge good">On Target (≤ 1.00)</span>
+    </div>
+    <div class="kpi-card">
+      <div class="kpi-label">Uncovered Claim Cost (Margin Leakage)</div>
+      <div class="kpi-val" id="kpi-leak">$587,546</div>
+      <div class="kpi-sub" id="kpi-leak-sub">74.19% uncovered • 25.81% payer coverage</div>
+      <span class="badge bad">Critical Financial Exposure</span>
+    </div>
+    <div class="kpi-card warn">
+      <div class="kpi-label">Readmissions from High-Risk Patients</div>
+      <div class="kpi-val" id="kpi-hr">97.72%</div>
+      <div class="kpi-sub" id="kpi-hr-sub">429 of 439 readmissions (78.8% of encounters)</div>
+      <span class="badge warn">Extreme Risk Concentration</span>
+    </div>
+  </div>
+
+  <section>
+    <h2>1. Annual Encounter Volume &amp; 30-Day Readmission Trend (2011–2020)</h2>
+    <p class="sec-sub">Inpatient readmission rates breached the 15.0% target in 7 of 10 years, peaking at 26.8% in 2015 while urgent care expanded steadily.</p>
+    <div class="chart-wrap"><img src="assets/view1_annual_trend.svg" alt="Annual Encounter Volume and Readmission Trend"></div>
+  </section>
+
+  <section>
+    <h2>2. Top 10 Clinical Drivers of Inpatient Readmissions</h2>
+    <p class="sec-sub">Oncology-related drivers account for 97.9% (430/439) of all inpatient readmissions; NSCLC &amp; Breast oncology alone accounts for 80.0%.</p>
+    <div class="chart-wrap"><img src="assets/view2_clinical_drivers.svg" alt="Top 10 Clinical Drivers of Inpatient Readmissions"></div>
+  </section>
+
+  <section>
+    <h2>3. Risk Tier × Age Cohort Readmission Heatmap</h2>
+    <p class="sec-sub">High-Risk Middle-Aged (39.0%) and High-Risk Senior (25.8%) generate 94.8% of all readmissions; Moderate-Risk Pediatric (20.4%) is the sole non-High-Risk signal.</p>
+    <div class="chart-wrap"><img src="assets/view3_risk_heatmap.svg" alt="Risk Tier by Age Cohort Heatmap"></div>
+  </section>
+
+  <section>
+    <h2>4. Payer Quadrant: Coverage Rate vs. Inpatient Readmission Rate</h2>
+    <p class="sec-sub">Medicare ($180.1k) and Self-Pay ($92.6k) drive 46.4% of total margin leakage. Cigna Health and UnitedHealthcare occupy the optimal quadrant.</p>
+    <div class="chart-wrap"><img src="assets/view4_payer_quadrant.svg" alt="Payer Coverage vs Readmission Quadrant"></div>
+    <table>
+      <thead>
+        <tr>
+          <th>Payer</th><th>Group</th><th class="num">Encounters</th><th class="num">Inpatient Stays</th>
+          <th class="num">Readmissions</th><th class="num">Readm. Rate</th><th class="num">Coverage Rate</th><th class="num">Margin Leakage</th>
+        </tr>
+      </thead>
+      <tbody id="payer-tbody"></tbody>
+    </table>
+  </section>
+
+  <section>
+    <h2>5. Prioritized Strategic Action Plan</h2>
+    <p class="sec-sub">Targeted clinical, revenue-cycle, and data-governance interventions derived from the workbook diagnostics.</p>
+    <div class="rec-grid">
+      <div class="rec-card">
+        <span class="badge bad">P1 • Clinical</span>
+        <h3>Oncology Transitional Care &amp; Infusion Pathways</h3>
+        <p>Deploy 72-hour post-discharge nurse navigation for NSCLC, Breast, and Stage 1 SCLC patients (97.9% of readmissions) and evaluate outpatient infusion alternatives to bring overall readmissions below 15%.</p>
+      </div>
+      <div class="rec-card">
+        <span class="badge bad">P1 • Revenue Cycle</span>
+        <h3>Self-Pay Presumptive Eligibility Screening</h3>
+        <p>Screen Self-Pay admissions ($92.6k leakage, 0% coverage, 29.0% readmissions) for Medicaid eligibility (38.3% coverage) at intake to recover $30k–$35k+ while improving post-discharge care continuity.</p>
+      </div>
+      <div class="rec-card">
+        <span class="badge warn">P2 • Payer Strategy</span>
+        <h3>Medicare HRRP Protection &amp; BCBS Review</h3>
+        <p>Focus High-Risk Senior care management on Medicare (32.4% readm, $180.1k leakage) to mitigate CMS penalties, and audit BCBS denials/contracts (23.4% coverage, 25.6% readm).</p>
+      </div>
+      <div class="rec-card">
+        <span class="badge good">P3 • Data Governance</span>
+        <h3>EHR Open-Encounter Closure Validation</h3>
+        <p>Automate 30-day open-encounter alerts to eliminate extreme LOS outliers (5 records spanning 74–20,215 days that distort raw inpatient LOS from 1.09d to 18.04d).</p>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="container">
+    Generated from <code>Healthcare_Operations_V2.twbx</code> •
+    <a href="https://github.com/ahmedelsayed7115/healthcare-operations-report">View Full Markdown Report &amp; Source on GitHub</a>
+  </div>
+</footer>
+
+<script>
+const SCOPES = {
+  all: {
+    readm: "23.88%", readmSub: "439 readmissions / 1,838 inpatient stays", readmBadge: "+8.88 pts vs. 15.0% goal",
+    oe: "1.00", oeSub: "1.09d clean avg LOS (18.04d raw; 5 outliers)",
+    leak: "$587,546", leakSub: "74.19% uncovered • 25.81% payer coverage",
+    hr: "97.72%", hrSub: "429 of 439 readmissions (78.8% of encounters)"
+  },
+  op: {
+    readm: "19.03%", readmSub: "207 readmissions / 1,088 inpatient stays", readmBadge: "+4.03 pts vs. 15.0% goal",
+    oe: "0.97", oeSub: "1.05d clean avg LOS (1.11d raw; 1 outlier)",
+    leak: "$358,483", leakSub: "74.20% uncovered • 25.80% payer coverage",
+    hr: "96.62%", hrSub: "200 of 207 readmissions (70.7% of encounters)"
+  }
+};
+
+const PAYERS = [
+  ["Medicare", "Insured", 2022, 444, 144, "32.4%", "31.0%", "$180,115"],
+  ["Self-Pay / Uncompensated", "Self-Pay", 746, 310, 90, "29.0%", "0.0%", "$92,581"],
+  ["Blue Cross Blue Shield", "Insured", 790, 293, 75, "25.6%", "23.4%", "$76,419"],
+  ["Medicaid", "Insured", 955, 329, 61, "18.5%", "38.3%", "$71,754"],
+  ["Humana", "Insured", 457, 151, 24, "15.9%", "20.6%", "$43,167"],
+  ["Cigna Health", "Insured", 463, 108, 11, "10.2%", "27.4%", "$42,857"],
+  ["UnitedHealthcare", "Insured", 403, 129, 17, "13.2%", "30.9%", "$34,244"],
+  ["Aetna", "Insured", 266, 46, 17, "37.0%", "32.3%", "$22,872"],
+  ["Dual Eligible", "Insured", 153, 26, 0, "0.0%", "10.3%", "$17,594"],
+  ["Anthem", "Insured", 46, 2, 0, "0.0%", "0.0%", "$5,941"]
+];
+
+document.getElementById("payer-tbody").innerHTML = PAYERS.map(r => `
+  <tr>
+    <td><strong>${r[0]}</strong></td><td>${r[1]}</td>
+    <td class="num">${r[2].toLocaleString()}</td><td class="num">${r[3].toLocaleString()}</td>
+    <td class="num">${r[4]}</td><td class="num">${r[5]}</td><td class="num">${r[6]}</td><td class="num"><strong>${r[7]}</strong></td>
+  </tr>`).join("");
+
+function setScope(key) {
+  const s = SCOPES[key];
+  document.getElementById("btn-all").classList.toggle("active", key === "all");
+  document.getElementById("btn-op").classList.toggle("active", key === "op");
+  document.getElementById("kpi-readm").textContent = s.readm;
+  document.getElementById("kpi-readm-sub").textContent = s.readmSub;
+  document.getElementById("kpi-readm-badge").textContent = s.readmBadge;
+  document.getElementById("kpi-oe").textContent = s.oe;
+  document.getElementById("kpi-oe-sub").textContent = s.oeSub;
+  document.getElementById("kpi-leak").textContent = s.leak;
+  document.getElementById("kpi-leak-sub").textContent = s.leakSub;
+  document.getElementById("kpi-hr").textContent = s.hr;
+  document.getElementById("kpi-hr-sub").textContent = s.hrSub;
+}
+</script>
+</body>
+</html>

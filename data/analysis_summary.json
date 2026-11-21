@@ -1,0 +1,1982 @@
+{
+  "all_data": {
+    "kpis": {
+      "total_encounters": 6301,
+      "unique_patients": 941,
+      "year_min": 1923,
+      "year_max": 2020,
+      "by_class": {
+        "emergency": 2090,
+        "inpatient": 1838,
+        "urgentcare": 2373
+      },
+      "inpatient_stays": 1838,
+      "readmissions_30d": 439,
+      "readmission_rate": 0.2388,
+      "clean_oe_los_ratio": 1.0,
+      "clean_inpatient_avg_los": 1.09,
+      "raw_inpatient_avg_los": 18.04,
+      "los_outliers_count": 5,
+      "total_claim_cost": 791980.75,
+      "payer_coverage": 204434.81,
+      "margin_leakage": 587545.94,
+      "payer_coverage_rate": 0.2581,
+      "uncovered_claim_share": 0.7419,
+      "high_risk_encounters": 4964,
+      "high_risk_encounter_share": 0.7878,
+      "high_risk_readmissions": 429,
+      "high_risk_readmission_share": 0.9772
+    },
+    "views": {
+      "view1_annual": [
+        {
+          "year": 1923,
+          "emergency": 1,
+          "inpatient": 0,
+          "urgentcare": 0,
+          "total": 1,
+          "readmissions": 0,
+          "readmission_rate": 0,
+          "claim_cost": 129.16,
+          "margin_leakage": 129.16
+        },
+        {
+          "year": 1924,
+          "emergency": 2,
+          "inpatient": 0,
+          "urgentcare": 0,
+          "total": 2,
+          "readmissions": 0,
+          "readmission_rate": 0,
+          "claim_cost": 258.32,
+          "margin_leakage": 160.0
+        },
+        {
+          "year": 1926,
+          "emergency": 1,
+          "inpatient": 0,
+          "urgentcare": 0,
+          "total": 1,
+          "readmissions": 0,
+          "readmission_rate": 0,
+          "claim_cost": 129.16,
+          "margin_leakage": 60.0
+        },
+        {
+          "year": 1927,
+          "emergency": 1,
+          "inpatient": 0,
+          "urgentcare": 0,
+          "total": 1,
+          "readmissions": 0,
+          "readmission_rate": 0,
+          "claim_cost": 129.16,
+          "margin_leakage": 70.0
+        },
+        {
+          "year": 1930,
+          "emergency": 1,
+          "inpatient": 0,
+          "urgentcare": 0,
+          "total": 1,
+          "readmissions": 0,
+          "readmission_rate": 0,
+          "claim_cost": 129.16,
+          "margin_leakage": 60.0
+        },
+        {
+          "year": 1939,
+          "emergency": 2,
+          "inpatient": 0,
+          "urgentcare": 0,
+          "total": 2,
+          "readmissions": 0,
+          "readmission_rate": 0,
+          "claim_cost": 258.32,
+          "margin_leakage": 135.0
+        },
+        {
+          "year": 1940,
+          "emergency": 2,
+          "inpatient": 1,
+          "urgentcare": 0,
+          "total": 3,
+          "readmissions": 0,
+          "readmission_rate": 0.0,
+          "claim_cost": 335.81,
+          "margin_leakage": 318.32
+        },
+        {
+          "year": 1941,
+          "emergency": 1,
+          "inpatient": 0,
+          "urgentcare": 0,
+          "total": 1,
+          "readmissions": 0,
+          "readmission_rate": 0,
+          "claim_cost": 129.16,
+          "margin_leakage": 129.16
+        },
+        {
+          "year": 1943,
+          "emergency": 0,
+          "inpatient": 1,
+          "urgentcare": 0,
+          "total": 1,
+          "readmissions": 0,
+          "readmission_rate": 0.0,
+          "claim_cost": 129.16,
+          "margin_leakage": 75.0
+        },
+        {
+          "year": 1944,
+          "emergency": 1,
+          "inpatient": 0,
+          "urgentcare": 0,
+          "total": 1,
+          "readmissions": 0,
+          "readmission_rate": 0,
+          "claim_cost": 129.16,
+          "margin_leakage": 129.16
+        },
+        {
+          "year": 1947,
+          "emergency": 2,
+          "inpatient": 0,
+          "urgentcare": 0,
+          "total": 2,
+          "readmissions": 0,
+          "readmission_rate": 0,
+          "claim_cost": 258.32,
+          "margin_leakage": 145.0
+        },
+        {
+          "year": 1948,
+          "emergency": 1,
+          "inpatient": 0,
+          "urgentcare": 0,
+          "total": 1,
+          "readmissions": 0,
+          "readmission_rate": 0,
+          "claim_cost": 129.16,
+          "margin_leakage": 75.0
+        },
+        {
+          "year": 1949,
+          "emergency": 2,
+          "inpatient": 0,
+          "urgentcare": 0,
+          "total": 2,
+          "readmissions": 0,
+          "readmission_rate": 0,
+          "claim_cost": 258.32,
+          "margin_leakage": 125.0
+        },
+        {
+          "year": 1952,
+          "emergency": 2,
+          "inpatient": 0,
+          "urgentcare": 0,
+          "total": 2,
+          "readmissions": 0,
+          "readmission_rate": 0,
+          "claim_cost": 258.32,
+          "margin_leakage": 160.0
+        },
+        {
+          "year": 1953,
+          "emergency": 1,
+          "inpatient": 0,
+          "urgentcare": 1,
+          "total": 2,
+          "readmissions": 0,
+          "readmission_rate": 0,
+          "claim_cost": 258.32,
+          "margin_leakage": 189.16
+        },
+        {
+          "year": 1954,
+          "emergency": 3,
+          "inpatient": 0,
+          "urgentcare": 0,
+          "total": 3,
+          "readmissions": 0,
+          "readmission_rate": 0,
+          "claim_cost": 387.48,
+          "margin_leakage": 259.16
+        },
+        {
+          "year": 1955,
+          "emergency": 4,
+          "inpatient": 0,
+          "urgentcare": 0,
+          "total": 4,
+          "readmissions": 0,
+          "readmission_rate": 0,
+          "claim_cost": 516.64,
+          "margin_leakage": 334.16
+        },
+        {
+          "year": 1956,
+          "emergency": 4,
+          "inpatient": 0,
+          "urgentcare": 0,
+          "total": 4,
+          "readmissions": 0,
+          "readmission_rate": 0,
+          "claim_cost": 516.64,
+          "margin_leakage": 462.48
+        },
+        {
+          "year": 1957,
+          "emergency": 3,
+          "inpatient": 0,
+          "urgentcare": 0,
+          "total": 3,
+          "readmissions": 0,
+          "readmission_rate": 0,
+          "claim_cost": 387.48,
+          "margin_leakage": 180.0
+        },
+        {
+          "year": 1958,
+          "emergency": 1,
+          "inpatient": 0,
+          "urgentcare": 1,
+          "total": 2,
+          "readmissions": 0,
+          "readmission_rate": 0,
+          "claim_cost": 258.32,
+          "margin_leakage": 189.16
+        },
+        {
+          "year": 1959,
+          "emergency": 3,
+          "inpatient": 0,
+          "urgentcare": 0,
+          "total": 3,
+          "readmissions": 0,
+          "readmission_rate": 0,
+          "claim_cost": 387.48,
+          "margin_leakage": 210.0
+        },
+        {
+          "year": 1960,
+          "emergency": 1,
+          "inpatient": 0,
+          "urgentcare": 0,
+          "total": 1,
+          "readmissions": 0,
+          "readmission_rate": 0,
+          "claim_cost": 129.16,
+          "margin_leakage": 70.0
+        },
+        {
+          "year": 1961,
+          "emergency": 1,
+          "inpatient": 0,
+          "urgentcare": 0,
+          "total": 1,
+          "readmissions": 0,
+          "readmission_rate": 0,
+          "claim_cost": 129.16,
+          "margin_leakage": 60.0
+        },
+        {
+          "year": 1962,
+          "emergency": 5,
+          "inpatient": 2,
+          "urgentcare": 1,
+          "total": 8,
+          "readmissions": 0,
+          "readmission_rate": 0.0,
+          "claim_cost": 981.61,
+          "margin_leakage": 786.64
+        },
+        {
+          "year": 1963,
+          "emergency": 5,
+          "inpatient": 1,
+          "urgentcare": 0,
+          "total": 6,
+          "readmissions": 0,
+          "readmission_rate": 0.0,
+          "claim_cost": 723.29,
+          "margin_leakage": 543.32
+        },
+        {
+          "year": 1964,
+          "emergency": 3,
+          "inpatient": 0,
+          "urgentcare": 0,
+          "total": 3,
+          "readmissions": 0,
+          "readmission_rate": 0,
+          "claim_cost": 387.48,
+          "margin_leakage": 269.16
+        },
+        {
+          "year": 1965,
+          "emergency": 6,
+          "inpatient": 0,
+          "urgentcare": 4,
+          "total": 10,
+          "readmissions": 0,
+          "readmission_rate": 0,
+          "claim_cost": 1291.6,
+          "margin_leakage": 990.8
+        },
+        {
+          "year": 1966,
+          "emergency": 9,
+          "inpatient": 1,
+          "urgentcare": 13,
+          "total": 23,
+          "readmissions": 0,
+          "readmission_rate": 0.0,
+          "claim_cost": 2970.68,
+          "margin_leakage": 2744.04
+        },
+        {
+          "year": 1967,
+          "emergency": 5,
+          "inpatient": 3,
+          "urgentcare": 11,
+          "total": 19,
+          "readmissions": 0,
+          "readmission_rate": 0.0,
+          "claim_cost": 2350.7,
+          "margin_leakage": 2133.24
+        },
+        {
+          "year": 1968,
+          "emergency": 5,
+          "inpatient": 0,
+          "urgentcare": 14,
+          "total": 19,
+          "readmissions": 0,
+          "readmission_rate": 0,
+          "claim_cost": 2454.04,
+          "margin_leakage": 2207.4
+        },
+        {
+          "year": 1969,
+          "emergency": 5,
+          "inpatient": 0,
+          "urgentcare": 18,
+          "total": 23,
+          "readmissions": 0,
+          "readmission_rate": 0,
+          "claim_cost": 2970.68,
+          "margin_leakage": 2649.88
+        },
+        {
+          "year": 1970,
+          "emergency": 3,
+          "inpatient": 1,
+          "urgentcare": 10,
+          "total": 14,
+          "readmissions": 0,
+          "readmission_rate": 0.0,
+          "claim_cost": 1756.57,
+          "margin_leakage": 1674.92
+        },
+        {
+          "year": 1971,
+          "emergency": 13,
+          "inpatient": 0,
+          "urgentcare": 19,
+          "total": 32,
+          "readmissions": 0,
+          "readmission_rate": 0,
+          "claim_cost": 4133.12,
+          "margin_leakage": 3542.36
+        },
+        {
+          "year": 1972,
+          "emergency": 4,
+          "inpatient": 2,
+          "urgentcare": 24,
+          "total": 30,
+          "readmissions": 0,
+          "readmission_rate": 0.0,
+          "claim_cost": 3823.13,
+          "margin_leakage": 3741.48
+        },
+        {
+          "year": 1973,
+          "emergency": 6,
+          "inpatient": 0,
+          "urgentcare": 32,
+          "total": 38,
+          "readmissions": 0,
+          "readmission_rate": 0,
+          "claim_cost": 4908.08,
+          "margin_leakage": 4582.28
+        },
+        {
+          "year": 1974,
+          "emergency": 10,
+          "inpatient": 2,
+          "urgentcare": 27,
+          "total": 39,
+          "readmissions": 0,
+          "readmission_rate": 0.0,
+          "claim_cost": 4985.57,
+          "margin_leakage": 4416.48
+        },
+        {
+          "year": 1975,
+          "emergency": 3,
+          "inpatient": 11,
+          "urgentcare": 23,
+          "total": 37,
+          "readmissions": 6,
+          "readmission_rate": 0.5455,
+          "claim_cost": 4778.92,
+          "margin_leakage": 4070.68
+        },
+        {
+          "year": 1976,
+          "emergency": 8,
+          "inpatient": 22,
+          "urgentcare": 12,
+          "total": 42,
+          "readmissions": 12,
+          "readmission_rate": 0.5455,
+          "claim_cost": 5269.71,
+          "margin_leakage": 4173.2
+        },
+        {
+          "year": 1977,
+          "emergency": 5,
+          "inpatient": 24,
+          "urgentcare": 3,
+          "total": 32,
+          "readmissions": 14,
+          "readmission_rate": 0.5833,
+          "claim_cost": 4133.12,
+          "margin_leakage": 2216.64
+        },
+        {
+          "year": 1978,
+          "emergency": 5,
+          "inpatient": 13,
+          "urgentcare": 1,
+          "total": 19,
+          "readmissions": 5,
+          "readmission_rate": 0.3846,
+          "claim_cost": 2402.37,
+          "margin_leakage": 1122.48
+        },
+        {
+          "year": 1979,
+          "emergency": 6,
+          "inpatient": 10,
+          "urgentcare": 0,
+          "total": 16,
+          "readmissions": 2,
+          "readmission_rate": 0.2,
+          "claim_cost": 2014.89,
+          "margin_leakage": 864.16
+        },
+        {
+          "year": 1980,
+          "emergency": 6,
+          "inpatient": 0,
+          "urgentcare": 3,
+          "total": 9,
+          "readmissions": 0,
+          "readmission_rate": 0,
+          "claim_cost": 1162.44,
+          "margin_leakage": 732.48
+        },
+        {
+          "year": 1981,
+          "emergency": 8,
+          "inpatient": 2,
+          "urgentcare": 1,
+          "total": 11,
+          "readmissions": 0,
+          "readmission_rate": 0.0,
+          "claim_cost": 1369.09,
+          "margin_leakage": 843.32
+        },
+        {
+          "year": 1982,
+          "emergency": 6,
+          "inpatient": 6,
+          "urgentcare": 0,
+          "total": 12,
+          "readmissions": 3,
+          "readmission_rate": 0.5,
+          "claim_cost": 1498.25,
+          "margin_leakage": 689.16
+        },
+        {
+          "year": 1983,
+          "emergency": 8,
+          "inpatient": 14,
+          "urgentcare": 0,
+          "total": 22,
+          "readmissions": 5,
+          "readmission_rate": 0.3571,
+          "claim_cost": 2841.52,
+          "margin_leakage": 1134.16
+        },
+        {
+          "year": 1984,
+          "emergency": 10,
+          "inpatient": 31,
+          "urgentcare": 0,
+          "total": 41,
+          "readmissions": 22,
+          "readmission_rate": 0.7097,
+          "claim_cost": 5243.89,
+          "margin_leakage": 2631.64
+        },
+        {
+          "year": 1985,
+          "emergency": 5,
+          "inpatient": 16,
+          "urgentcare": 5,
+          "total": 26,
+          "readmissions": 11,
+          "readmission_rate": 0.6875,
+          "claim_cost": 3358.16,
+          "margin_leakage": 1710.8
+        },
+        {
+          "year": 1986,
+          "emergency": 13,
+          "inpatient": 15,
+          "urgentcare": 16,
+          "total": 44,
+          "readmissions": 3,
+          "readmission_rate": 0.2,
+          "claim_cost": 5476.36,
+          "margin_leakage": 4046.5
+        },
+        {
+          "year": 1987,
+          "emergency": 7,
+          "inpatient": 1,
+          "urgentcare": 5,
+          "total": 13,
+          "readmissions": 0,
+          "readmission_rate": 0.0,
+          "claim_cost": 1627.41,
+          "margin_leakage": 1338.28
+        },
+        {
+          "year": 1988,
+          "emergency": 8,
+          "inpatient": 4,
+          "urgentcare": 7,
+          "total": 19,
+          "readmissions": 0,
+          "readmission_rate": 0.0,
+          "claim_cost": 2402.37,
+          "margin_leakage": 1806.6
+        },
+        {
+          "year": 1989,
+          "emergency": 10,
+          "inpatient": 2,
+          "urgentcare": 8,
+          "total": 20,
+          "readmissions": 0,
+          "readmission_rate": 0.0,
+          "claim_cost": 2531.53,
+          "margin_leakage": 1869.09
+        },
+        {
+          "year": 1990,
+          "emergency": 13,
+          "inpatient": 77,
+          "urgentcare": 6,
+          "total": 96,
+          "readmissions": 1,
+          "readmission_rate": 0.013,
+          "claim_cost": 8575.78,
+          "margin_leakage": 7028.01
+        },
+        {
+          "year": 1991,
+          "emergency": 10,
+          "inpatient": 32,
+          "urgentcare": 8,
+          "total": 50,
+          "readmissions": 0,
+          "readmission_rate": 0.0,
+          "claim_cost": 4907.9,
+          "margin_leakage": 3939.84
+        },
+        {
+          "year": 1992,
+          "emergency": 8,
+          "inpatient": 15,
+          "urgentcare": 8,
+          "total": 31,
+          "readmissions": 0,
+          "readmission_rate": 0.0,
+          "claim_cost": 3280.58,
+          "margin_leakage": 2494.91
+        },
+        {
+          "year": 1993,
+          "emergency": 14,
+          "inpatient": 15,
+          "urgentcare": 15,
+          "total": 44,
+          "readmissions": 4,
+          "readmission_rate": 0.2667,
+          "claim_cost": 5218.01,
+          "margin_leakage": 3946.53
+        },
+        {
+          "year": 1994,
+          "emergency": 16,
+          "inpatient": 36,
+          "urgentcare": 10,
+          "total": 62,
+          "readmissions": 13,
+          "readmission_rate": 0.3611,
+          "claim_cost": 7491.22,
+          "margin_leakage": 4434.04
+        },
+        {
+          "year": 1995,
+          "emergency": 14,
+          "inpatient": 27,
+          "urgentcare": 18,
+          "total": 59,
+          "readmissions": 18,
+          "readmission_rate": 0.6667,
+          "claim_cost": 7362.09,
+          "margin_leakage": 4763.2
+        },
+        {
+          "year": 1996,
+          "emergency": 15,
+          "inpatient": 15,
+          "urgentcare": 9,
+          "total": 39,
+          "readmissions": 4,
+          "readmission_rate": 0.2667,
+          "claim_cost": 4778.89,
+          "margin_leakage": 3196.55
+        },
+        {
+          "year": 1997,
+          "emergency": 13,
+          "inpatient": 23,
+          "urgentcare": 15,
+          "total": 51,
+          "readmissions": 15,
+          "readmission_rate": 0.6522,
+          "claim_cost": 6483.82,
+          "margin_leakage": 4069.04
+        },
+        {
+          "year": 1998,
+          "emergency": 15,
+          "inpatient": 22,
+          "urgentcare": 21,
+          "total": 58,
+          "readmissions": 12,
+          "readmission_rate": 0.5455,
+          "claim_cost": 7336.27,
+          "margin_leakage": 4850.66
+        },
+        {
+          "year": 1999,
+          "emergency": 21,
+          "inpatient": 15,
+          "urgentcare": 41,
+          "total": 77,
+          "readmissions": 0,
+          "readmission_rate": 0.0,
+          "claim_cost": 9531.96,
+          "margin_leakage": 7643.85
+        },
+        {
+          "year": 2000,
+          "emergency": 24,
+          "inpatient": 17,
+          "urgentcare": 47,
+          "total": 88,
+          "readmissions": 0,
+          "readmission_rate": 0.0,
+          "claim_cost": 10694.37,
+          "margin_leakage": 8606.29
+        },
+        {
+          "year": 2001,
+          "emergency": 31,
+          "inpatient": 24,
+          "urgentcare": 46,
+          "total": 101,
+          "readmissions": 2,
+          "readmission_rate": 0.0833,
+          "claim_cost": 12373.45,
+          "margin_leakage": 9843.76
+        },
+        {
+          "year": 2002,
+          "emergency": 24,
+          "inpatient": 21,
+          "urgentcare": 59,
+          "total": 104,
+          "readmissions": 9,
+          "readmission_rate": 0.4286,
+          "claim_cost": 13225.96,
+          "margin_leakage": 11176.98
+        },
+        {
+          "year": 2003,
+          "emergency": 31,
+          "inpatient": 34,
+          "urgentcare": 62,
+          "total": 127,
+          "readmissions": 12,
+          "readmission_rate": 0.3529,
+          "claim_cost": 16248.31,
+          "margin_leakage": 12820.28
+        },
+        {
+          "year": 2004,
+          "emergency": 34,
+          "inpatient": 31,
+          "urgentcare": 63,
+          "total": 128,
+          "readmissions": 8,
+          "readmission_rate": 0.2581,
+          "claim_cost": 16325.8,
+          "margin_leakage": 12533.62
+        },
+        {
+          "year": 2005,
+          "emergency": 27,
+          "inpatient": 10,
+          "urgentcare": 32,
+          "total": 69,
+          "readmissions": 2,
+          "readmission_rate": 0.2,
+          "claim_cost": 8808.7,
+          "margin_leakage": 6390.57
+        },
+        {
+          "year": 2006,
+          "emergency": 26,
+          "inpatient": 12,
+          "urgentcare": 26,
+          "total": 64,
+          "readmissions": 0,
+          "readmission_rate": 0.0,
+          "claim_cost": 7956.22,
+          "margin_leakage": 5868.94
+        },
+        {
+          "year": 2007,
+          "emergency": 25,
+          "inpatient": 11,
+          "urgentcare": 28,
+          "total": 64,
+          "readmissions": 0,
+          "readmission_rate": 0.0,
+          "claim_cost": 8162.9,
+          "margin_leakage": 6343.9
+        },
+        {
+          "year": 2008,
+          "emergency": 51,
+          "inpatient": 27,
+          "urgentcare": 46,
+          "total": 124,
+          "readmissions": 9,
+          "readmission_rate": 0.3333,
+          "claim_cost": 15860.83,
+          "margin_leakage": 10722.1
+        },
+        {
+          "year": 2009,
+          "emergency": 29,
+          "inpatient": 48,
+          "urgentcare": 38,
+          "total": 115,
+          "readmissions": 24,
+          "readmission_rate": 0.5,
+          "claim_cost": 14801.73,
+          "margin_leakage": 9941.29
+        },
+        {
+          "year": 2010,
+          "emergency": 113,
+          "inpatient": 53,
+          "urgentcare": 99,
+          "total": 265,
+          "readmissions": 16,
+          "readmission_rate": 0.3019,
+          "claim_cost": 33969.05,
+          "margin_leakage": 25192.44
+        },
+        {
+          "year": 2011,
+          "emergency": 131,
+          "inpatient": 166,
+          "urgentcare": 142,
+          "total": 439,
+          "readmissions": 26,
+          "readmission_rate": 0.1566,
+          "claim_cost": 56184.54,
+          "margin_leakage": 39562.08
+        },
+        {
+          "year": 2012,
+          "emergency": 134,
+          "inpatient": 117,
+          "urgentcare": 139,
+          "total": 390,
+          "readmissions": 14,
+          "readmission_rate": 0.1197,
+          "claim_cost": 49339.0,
+          "margin_leakage": 35138.76
+        },
+        {
+          "year": 2013,
+          "emergency": 159,
+          "inpatient": 104,
+          "urgentcare": 141,
+          "total": 404,
+          "readmissions": 24,
+          "readmission_rate": 0.2308,
+          "claim_cost": 50992.23,
+          "margin_leakage": 37366.18
+        },
+        {
+          "year": 2014,
+          "emergency": 159,
+          "inpatient": 109,
+          "urgentcare": 145,
+          "total": 413,
+          "readmissions": 24,
+          "readmission_rate": 0.2202,
+          "claim_cost": 52154.67,
+          "margin_leakage": 39025.27
+        },
+        {
+          "year": 2015,
+          "emergency": 147,
+          "inpatient": 112,
+          "urgentcare": 147,
+          "total": 406,
+          "readmissions": 30,
+          "readmission_rate": 0.2679,
+          "claim_cost": 51250.55,
+          "margin_leakage": 38241.97
+        },
+        {
+          "year": 2016,
+          "emergency": 133,
+          "inpatient": 95,
+          "urgentcare": 151,
+          "total": 379,
+          "readmissions": 24,
+          "readmission_rate": 0.2526,
+          "claim_cost": 47969.91,
+          "margin_leakage": 35570.4
+        },
+        {
+          "year": 2017,
+          "emergency": 157,
+          "inpatient": 87,
+          "urgentcare": 173,
+          "total": 417,
+          "readmissions": 9,
+          "readmission_rate": 0.1034,
+          "claim_cost": 52826.32,
+          "margin_leakage": 39561.1
+        },
+        {
+          "year": 2018,
+          "emergency": 125,
+          "inpatient": 140,
+          "urgentcare": 151,
+          "total": 416,
+          "readmissions": 35,
+          "readmission_rate": 0.25,
+          "claim_cost": 52748.83,
+          "margin_leakage": 38439.49
+        },
+        {
+          "year": 2019,
+          "emergency": 125,
+          "inpatient": 122,
+          "urgentcare": 170,
+          "total": 417,
+          "readmissions": 19,
+          "readmission_rate": 0.1557,
+          "claim_cost": 52826.32,
+          "margin_leakage": 42342.45
+        },
+        {
+          "year": 2020,
+          "emergency": 39,
+          "inpatient": 36,
+          "urgentcare": 58,
+          "total": 133,
+          "readmissions": 2,
+          "readmission_rate": 0.0556,
+          "claim_cost": 16816.59,
+          "margin_leakage": 13235.33
+        }
+      ],
+      "view2_drivers_top15": [
+        {
+          "driver": "Encounter for problem (Oncology: NSCLC & Breast)",
+          "inpatient": 771,
+          "readmissions": 351,
+          "readmission_rate": 0.4553,
+          "claim_cost": 99582.36,
+          "margin_leakage": 56812.16,
+          "avg_clean_los": 1.07
+        },
+        {
+          "driver": "Malignant neoplasm of breast (disorder)",
+          "inpatient": 294,
+          "readmissions": 41,
+          "readmission_rate": 0.1395,
+          "claim_cost": 37973.04,
+          "margin_leakage": 17904.08,
+          "avg_clean_los": 1.03
+        },
+        {
+          "driver": "Small cell lung malignancy, Stage 1 (disorder)",
+          "inpatient": 31,
+          "readmissions": 30,
+          "readmission_rate": 0.9677,
+          "claim_cost": 4003.96,
+          "margin_leakage": 1240.0,
+          "avg_clean_los": 1.06
+        },
+        {
+          "driver": "Impacted molars",
+          "inpatient": 129,
+          "readmissions": 5,
+          "readmission_rate": 0.0388,
+          "claim_cost": 9996.21,
+          "margin_leakage": 9039.46,
+          "avg_clean_los": 1.01
+        },
+        {
+          "driver": "Encounter for symptom (Breast oncology follow-up)",
+          "inpatient": 12,
+          "readmissions": 4,
+          "readmission_rate": 0.3333,
+          "claim_cost": 1549.92,
+          "margin_leakage": 1436.6,
+          "avg_clean_los": 1.0
+        },
+        {
+          "driver": "Periodic reevaluation (Breast oncology follow-up)",
+          "inpatient": 9,
+          "readmissions": 3,
+          "readmission_rate": 0.3333,
+          "claim_cost": 1162.44,
+          "margin_leakage": 1098.28,
+          "avg_clean_los": 1.0
+        },
+        {
+          "driver": "Chronic intractable migraine without aura",
+          "inpatient": 121,
+          "readmissions": 2,
+          "readmission_rate": 0.0165,
+          "claim_cost": 9376.29,
+          "margin_leakage": 8464.46,
+          "avg_clean_los": 1.0
+        },
+        {
+          "driver": "Chronic pain",
+          "inpatient": 123,
+          "readmissions": 1,
+          "readmission_rate": 0.0081,
+          "claim_cost": 9531.27,
+          "margin_leakage": 8527.05,
+          "avg_clean_los": 1.0
+        },
+        {
+          "driver": "Admission to surgical department",
+          "inpatient": 40,
+          "readmissions": 1,
+          "readmission_rate": 0.025,
+          "claim_cost": 5166.4,
+          "margin_leakage": 2935.8,
+          "avg_clean_los": 1.06
+        },
+        {
+          "driver": "Malignant tumor of colon",
+          "inpatient": 6,
+          "readmissions": 1,
+          "readmission_rate": 0.1667,
+          "claim_cost": 774.96,
+          "margin_leakage": 370.0,
+          "avg_clean_los": 1.01
+        },
+        {
+          "driver": "Drug rehabilitation and detoxification",
+          "inpatient": 140,
+          "readmissions": 0,
+          "readmission_rate": 0.0,
+          "claim_cost": 18082.4,
+          "margin_leakage": 11473.96,
+          "avg_clean_los": 1.0
+        },
+        {
+          "driver": "Chronic congestive heart failure (disorder)",
+          "inpatient": 59,
+          "readmissions": 0,
+          "readmission_rate": 0.0,
+          "claim_cost": 7620.44,
+          "margin_leakage": 6992.16,
+          "avg_clean_los": 1.01
+        },
+        {
+          "driver": "Appendicitis",
+          "inpatient": 50,
+          "readmissions": 0,
+          "readmission_rate": 0.0,
+          "claim_cost": 3874.5,
+          "margin_leakage": 3407.37,
+          "avg_clean_los": 2.72
+        },
+        {
+          "driver": "Injury of medial collateral ligament of knee",
+          "inpatient": 13,
+          "readmissions": 0,
+          "readmission_rate": 0.0,
+          "claim_cost": 1679.08,
+          "margin_leakage": 1018.32,
+          "avg_clean_los": 1.11
+        },
+        {
+          "driver": "Pneumonia",
+          "inpatient": 8,
+          "readmissions": 0,
+          "readmission_rate": 0.0,
+          "claim_cost": 1033.28,
+          "margin_leakage": 944.12,
+          "avg_clean_los": 1.62
+        }
+      ],
+      "view3_heatmap": [
+        {
+          "risk_tier": "High Risk",
+          "age_cohort": "Middle-Aged",
+          "encounters": 1478,
+          "inpatient": 520,
+          "readmissions": 203,
+          "readmission_rate": 0.3904,
+          "margin_leakage": 148511.3
+        },
+        {
+          "risk_tier": "High Risk",
+          "age_cohort": "Pediatric",
+          "encounters": 15,
+          "inpatient": 1,
+          "readmissions": 0,
+          "readmission_rate": 0.0,
+          "margin_leakage": 1424.96
+        },
+        {
+          "risk_tier": "High Risk",
+          "age_cohort": "Senior",
+          "encounters": 3030,
+          "inpatient": 825,
+          "readmissions": 213,
+          "readmission_rate": 0.2582,
+          "margin_leakage": 288325.78
+        },
+        {
+          "risk_tier": "High Risk",
+          "age_cohort": "Young Adult",
+          "encounters": 441,
+          "inpatient": 284,
+          "readmissions": 13,
+          "readmission_rate": 0.0458,
+          "margin_leakage": 33754.41
+        },
+        {
+          "risk_tier": "Low Risk",
+          "age_cohort": "Middle-Aged",
+          "encounters": 77,
+          "inpatient": 6,
+          "readmissions": 0,
+          "readmission_rate": 0.0,
+          "margin_leakage": 6834.81
+        },
+        {
+          "risk_tier": "Low Risk",
+          "age_cohort": "Pediatric",
+          "encounters": 93,
+          "inpatient": 2,
+          "readmissions": 0,
+          "readmission_rate": 0.0,
+          "margin_leakage": 8939.72
+        },
+        {
+          "risk_tier": "Low Risk",
+          "age_cohort": "Senior",
+          "encounters": 11,
+          "inpatient": 0,
+          "readmissions": 0,
+          "readmission_rate": null,
+          "margin_leakage": 901.64
+        },
+        {
+          "risk_tier": "Low Risk",
+          "age_cohort": "Young Adult",
+          "encounters": 324,
+          "inpatient": 13,
+          "readmissions": 0,
+          "readmission_rate": 0.0,
+          "margin_leakage": 28079.3
+        },
+        {
+          "risk_tier": "Moderate Risk",
+          "age_cohort": "Middle-Aged",
+          "encounters": 226,
+          "inpatient": 37,
+          "readmissions": 0,
+          "readmission_rate": 0.0,
+          "margin_leakage": 18792.9
+        },
+        {
+          "risk_tier": "Moderate Risk",
+          "age_cohort": "Pediatric",
+          "encounters": 114,
+          "inpatient": 49,
+          "readmissions": 10,
+          "readmission_rate": 0.2041,
+          "margin_leakage": 9851.48
+        },
+        {
+          "risk_tier": "Moderate Risk",
+          "age_cohort": "Senior",
+          "encounters": 120,
+          "inpatient": 30,
+          "readmissions": 0,
+          "readmission_rate": 0.0,
+          "margin_leakage": 9331.44
+        },
+        {
+          "risk_tier": "Moderate Risk",
+          "age_cohort": "Young Adult",
+          "encounters": 372,
+          "inpatient": 71,
+          "readmissions": 0,
+          "readmission_rate": 0.0,
+          "margin_leakage": 32798.2
+        }
+      ],
+      "view4_payers": [
+        {
+          "payer_display": "Medicare",
+          "payer_group": "Insured Payer",
+          "encounters": 2022,
+          "inpatient": 444,
+          "readmissions": 144,
+          "readmission_rate": 0.3243,
+          "total_claim_cost": 261058.18,
+          "payer_coverage": 80943.1,
+          "margin_leakage": 180115.08,
+          "coverage_rate": 0.3101,
+          "uncovered_share": 0.6899
+        },
+        {
+          "payer_display": "Self-Pay / Uncompensated Care",
+          "payer_group": "Self-Pay / Uncompensated Care",
+          "encounters": 746,
+          "inpatient": 310,
+          "readmissions": 90,
+          "readmission_rate": 0.2903,
+          "total_claim_cost": 92581.45,
+          "payer_coverage": 0.0,
+          "margin_leakage": 92581.45,
+          "coverage_rate": 0.0,
+          "uncovered_share": 1.0
+        },
+        {
+          "payer_display": "Blue Cross Blue Shield",
+          "payer_group": "Insured Payer",
+          "encounters": 790,
+          "inpatient": 293,
+          "readmissions": 75,
+          "readmission_rate": 0.256,
+          "total_claim_cost": 99762.92,
+          "payer_coverage": 23344.2,
+          "margin_leakage": 76418.72,
+          "coverage_rate": 0.234,
+          "uncovered_share": 0.766
+        },
+        {
+          "payer_display": "Medicaid",
+          "payer_group": "Insured Payer",
+          "encounters": 955,
+          "inpatient": 329,
+          "readmissions": 61,
+          "readmission_rate": 0.1854,
+          "total_claim_cost": 116269.01,
+          "payer_coverage": 44514.57,
+          "margin_leakage": 71754.44,
+          "coverage_rate": 0.3829,
+          "uncovered_share": 0.6171
+        },
+        {
+          "payer_display": "Humana",
+          "payer_group": "Insured Payer",
+          "encounters": 457,
+          "inpatient": 151,
+          "readmissions": 24,
+          "readmission_rate": 0.1589,
+          "total_claim_cost": 54375.82,
+          "payer_coverage": 11208.48,
+          "margin_leakage": 43167.34,
+          "coverage_rate": 0.2061,
+          "uncovered_share": 0.7939
+        },
+        {
+          "payer_display": "Cigna Health",
+          "payer_group": "Insured Payer",
+          "encounters": 463,
+          "inpatient": 108,
+          "readmissions": 11,
+          "readmission_rate": 0.1019,
+          "total_claim_cost": 59026.03,
+          "payer_coverage": 16169.15,
+          "margin_leakage": 42856.88,
+          "coverage_rate": 0.2739,
+          "uncovered_share": 0.7261
+        },
+        {
+          "payer_display": "UnitedHealthcare",
+          "payer_group": "Insured Payer",
+          "encounters": 403,
+          "inpatient": 129,
+          "readmissions": 17,
+          "readmission_rate": 0.1318,
+          "total_claim_cost": 49571.32,
+          "payer_coverage": 15327.0,
+          "margin_leakage": 34244.32,
+          "coverage_rate": 0.3092,
+          "uncovered_share": 0.6908
+        },
+        {
+          "payer_display": "Aetna",
+          "payer_group": "Insured Payer",
+          "encounters": 266,
+          "inpatient": 46,
+          "readmissions": 17,
+          "readmission_rate": 0.3696,
+          "total_claim_cost": 33788.19,
+          "payer_coverage": 10916.27,
+          "margin_leakage": 22871.92,
+          "coverage_rate": 0.3231,
+          "uncovered_share": 0.6769
+        },
+        {
+          "payer_display": "Dual Eligible",
+          "payer_group": "Insured Payer",
+          "encounters": 153,
+          "inpatient": 26,
+          "readmissions": 0,
+          "readmission_rate": 0.0,
+          "total_claim_cost": 19606.47,
+          "payer_coverage": 2012.04,
+          "margin_leakage": 17594.43,
+          "coverage_rate": 0.1026,
+          "uncovered_share": 0.8974
+        },
+        {
+          "payer_display": "Anthem",
+          "payer_group": "Insured Payer",
+          "encounters": 46,
+          "inpatient": 2,
+          "readmissions": 0,
+          "readmission_rate": 0.0,
+          "total_claim_cost": 5941.36,
+          "payer_coverage": 0.0,
+          "margin_leakage": 5941.36,
+          "coverage_rate": 0.0,
+          "uncovered_share": 1.0
+        }
+      ],
+      "service_lines": [
+        {
+          "service_line": "General Medicine",
+          "encounters": 5606,
+          "inpatient": 1710,
+          "readmissions": 409,
+          "readmission_rate": 0.2392,
+          "claim_cost": 702214.55,
+          "margin_leakage": 538147.54
+        },
+        {
+          "service_line": "Obstetrics",
+          "encounters": 300,
+          "inpatient": 1,
+          "readmissions": 0,
+          "readmission_rate": 0.0,
+          "claim_cost": 38748.0,
+          "margin_leakage": 19794.88
+        },
+        {
+          "service_line": "Cardiology",
+          "encounters": 256,
+          "inpatient": 59,
+          "readmissions": 0,
+          "readmission_rate": 0.0,
+          "claim_cost": 33064.96,
+          "margin_leakage": 19669.52
+        },
+        {
+          "service_line": "Pulmonology",
+          "encounters": 112,
+          "inpatient": 42,
+          "readmissions": 30,
+          "readmission_rate": 0.7143,
+          "claim_cost": 14465.92,
+          "margin_leakage": 7936.52
+        },
+        {
+          "service_line": "Orthopedics",
+          "encounters": 27,
+          "inpatient": 26,
+          "readmissions": 0,
+          "readmission_rate": 0.0,
+          "claim_cost": 3487.32,
+          "margin_leakage": 1997.48
+        }
+      ],
+      "los_outliers": {
+        "count": 5,
+        "max_los_days": 20215.15,
+        "min_los_days": 74.17,
+        "top_drivers": [
+          [
+            "Encounter for symptom (Breast oncology follow-up)",
+            3
+          ],
+          [
+            "Periodic reevaluation (Breast oncology follow-up)",
+            1
+          ],
+          [
+            "Appendicitis",
+            1
+          ]
+        ]
+      }
+    }
+  },
+  "op_window_2011_2020": {
+    "kpis": {
+      "total_encounters": 3814,
+      "unique_patients": 761,
+      "year_min": 2011,
+      "year_max": 2020,
+      "by_class": {
+        "emergency": 1309,
+        "inpatient": 1088,
+        "urgentcare": 1417
+      },
+      "inpatient_stays": 1088,
+      "readmissions_30d": 207,
+      "readmission_rate": 0.1903,
+      "clean_oe_los_ratio": 0.97,
+      "clean_inpatient_avg_los": 1.05,
+      "raw_inpatient_avg_los": 1.11,
+      "los_outliers_count": 1,
+      "total_claim_cost": 483108.96,
+      "payer_coverage": 124625.93,
+      "margin_leakage": 358483.03,
+      "payer_coverage_rate": 0.258,
+      "uncovered_claim_share": 0.742,
+      "high_risk_encounters": 2695,
+      "high_risk_encounter_share": 0.7066,
+      "high_risk_readmissions": 200,
+      "high_risk_readmission_share": 0.9662
+    },
+    "views": {
+      "view1_annual": [
+        {
+          "year": 2011,
+          "emergency": 131,
+          "inpatient": 166,
+          "urgentcare": 142,
+          "total": 439,
+          "readmissions": 26,
+          "readmission_rate": 0.1566,
+          "claim_cost": 56184.54,
+          "margin_leakage": 39562.08
+        },
+        {
+          "year": 2012,
+          "emergency": 134,
+          "inpatient": 117,
+          "urgentcare": 139,
+          "total": 390,
+          "readmissions": 14,
+          "readmission_rate": 0.1197,
+          "claim_cost": 49339.0,
+          "margin_leakage": 35138.76
+        },
+        {
+          "year": 2013,
+          "emergency": 159,
+          "inpatient": 104,
+          "urgentcare": 141,
+          "total": 404,
+          "readmissions": 24,
+          "readmission_rate": 0.2308,
+          "claim_cost": 50992.23,
+          "margin_leakage": 37366.18
+        },
+        {
+          "year": 2014,
+          "emergency": 159,
+          "inpatient": 109,
+          "urgentcare": 145,
+          "total": 413,
+          "readmissions": 24,
+          "readmission_rate": 0.2202,
+          "claim_cost": 52154.67,
+          "margin_leakage": 39025.27
+        },
+        {
+          "year": 2015,
+          "emergency": 147,
+          "inpatient": 112,
+          "urgentcare": 147,
+          "total": 406,
+          "readmissions": 30,
+          "readmission_rate": 0.2679,
+          "claim_cost": 51250.55,
+          "margin_leakage": 38241.97
+        },
+        {
+          "year": 2016,
+          "emergency": 133,
+          "inpatient": 95,
+          "urgentcare": 151,
+          "total": 379,
+          "readmissions": 24,
+          "readmission_rate": 0.2526,
+          "claim_cost": 47969.91,
+          "margin_leakage": 35570.4
+        },
+        {
+          "year": 2017,
+          "emergency": 157,
+          "inpatient": 87,
+          "urgentcare": 173,
+          "total": 417,
+          "readmissions": 9,
+          "readmission_rate": 0.1034,
+          "claim_cost": 52826.32,
+          "margin_leakage": 39561.1
+        },
+        {
+          "year": 2018,
+          "emergency": 125,
+          "inpatient": 140,
+          "urgentcare": 151,
+          "total": 416,
+          "readmissions": 35,
+          "readmission_rate": 0.25,
+          "claim_cost": 52748.83,
+          "margin_leakage": 38439.49
+        },
+        {
+          "year": 2019,
+          "emergency": 125,
+          "inpatient": 122,
+          "urgentcare": 170,
+          "total": 417,
+          "readmissions": 19,
+          "readmission_rate": 0.1557,
+          "claim_cost": 52826.32,
+          "margin_leakage": 42342.45
+        },
+        {
+          "year": 2020,
+          "emergency": 39,
+          "inpatient": 36,
+          "urgentcare": 58,
+          "total": 133,
+          "readmissions": 2,
+          "readmission_rate": 0.0556,
+          "claim_cost": 16816.59,
+          "margin_leakage": 13235.33
+        }
+      ],
+      "view2_drivers_top15": [
+        {
+          "driver": "Encounter for problem (Oncology: NSCLC & Breast)",
+          "inpatient": 459,
+          "readmissions": 178,
+          "readmission_rate": 0.3878,
+          "claim_cost": 59284.44,
+          "margin_leakage": 36033.44,
+          "avg_clean_los": 1.06
+        },
+        {
+          "driver": "Malignant neoplasm of breast (disorder)",
+          "inpatient": 223,
+          "readmissions": 23,
+          "readmission_rate": 0.1031,
+          "claim_cost": 28802.68,
+          "margin_leakage": 14010.76,
+          "avg_clean_los": 1.02
+        },
+        {
+          "driver": "Encounter for symptom (Breast oncology follow-up)",
+          "inpatient": 5,
+          "readmissions": 3,
+          "readmission_rate": 0.6,
+          "claim_cost": 645.8,
+          "margin_leakage": 645.8,
+          "avg_clean_los": 1.0
+        },
+        {
+          "driver": "Periodic reevaluation (Breast oncology follow-up)",
+          "inpatient": 3,
+          "readmissions": 2,
+          "readmission_rate": 0.6667,
+          "claim_cost": 387.48,
+          "margin_leakage": 387.48,
+          "avg_clean_los": 1.0
+        },
+        {
+          "driver": "Malignant tumor of colon",
+          "inpatient": 3,
+          "readmissions": 1,
+          "readmission_rate": 0.3333,
+          "claim_cost": 387.48,
+          "margin_leakage": 190.0,
+          "avg_clean_los": 1.01
+        },
+        {
+          "driver": "Drug rehabilitation and detoxification",
+          "inpatient": 109,
+          "readmissions": 0,
+          "readmission_rate": 0.0,
+          "claim_cost": 14078.44,
+          "margin_leakage": 9053.16,
+          "avg_clean_los": 1.0
+        },
+        {
+          "driver": "Chronic pain",
+          "inpatient": 62,
+          "readmissions": 0,
+          "readmission_rate": 0.0,
+          "claim_cost": 4804.38,
+          "margin_leakage": 4469.72,
+          "avg_clean_los": 1.0
+        },
+        {
+          "driver": "Impacted molars",
+          "inpatient": 59,
+          "readmissions": 0,
+          "readmission_rate": 0.0,
+          "claim_cost": 4571.91,
+          "margin_leakage": 4359.68,
+          "avg_clean_los": 1.01
+        },
+        {
+          "driver": "Chronic intractable migraine without aura",
+          "inpatient": 56,
+          "readmissions": 0,
+          "readmission_rate": 0.0,
+          "claim_cost": 4339.44,
+          "margin_leakage": 4084.7,
+          "avg_clean_los": 1.0
+        },
+        {
+          "driver": "Admission to surgical department",
+          "inpatient": 35,
+          "readmissions": 0,
+          "readmission_rate": 0.0,
+          "claim_cost": 4520.6,
+          "margin_leakage": 2600.8,
+          "avg_clean_los": 1.06
+        },
+        {
+          "driver": "Chronic congestive heart failure (disorder)",
+          "inpatient": 30,
+          "readmissions": 0,
+          "readmission_rate": 0.0,
+          "claim_cost": 3874.8,
+          "margin_leakage": 3464.0,
+          "avg_clean_los": 1.01
+        },
+        {
+          "driver": "Injury of medial collateral ligament of knee",
+          "inpatient": 10,
+          "readmissions": 0,
+          "readmission_rate": 0.0,
+          "claim_cost": 1291.6,
+          "margin_leakage": 788.32,
+          "avg_clean_los": 1.11
+        },
+        {
+          "driver": "Appendicitis",
+          "inpatient": 7,
+          "readmissions": 0,
+          "readmission_rate": 0.0,
+          "claim_cost": 542.43,
+          "margin_leakage": 457.49,
+          "avg_clean_los": 2.75
+        },
+        {
+          "driver": "Anemia (disorder)",
+          "inpatient": 6,
+          "readmissions": 0,
+          "readmission_rate": 0.0,
+          "claim_cost": 774.96,
+          "margin_leakage": 513.32,
+          "avg_clean_los": 1.03
+        },
+        {
+          "driver": "Overlapping malignant neoplasm of colon",
+          "inpatient": 5,
+          "readmissions": 0,
+          "readmission_rate": 0.0,
+          "claim_cost": 645.8,
+          "margin_leakage": 329.16,
+          "avg_clean_los": 1.01
+        }
+      ],
+      "view3_heatmap": [
+        {
+          "risk_tier": "High Risk",
+          "age_cohort": "Middle-Aged",
+          "encounters": 703,
+          "inpatient": 270,
+          "readmissions": 118,
+          "readmission_rate": 0.437,
+          "margin_leakage": 69364.38
+        },
+        {
+          "risk_tier": "High Risk",
+          "age_cohort": "Senior",
+          "encounters": 1670,
+          "inpatient": 412,
+          "readmissions": 70,
+          "readmission_rate": 0.1699,
+          "margin_leakage": 169093.73
+        },
+        {
+          "risk_tier": "High Risk",
+          "age_cohort": "Young Adult",
+          "encounters": 322,
+          "inpatient": 231,
+          "readmissions": 12,
+          "readmission_rate": 0.0519,
+          "margin_leakage": 23891.5
+        },
+        {
+          "risk_tier": "Low Risk",
+          "age_cohort": "Middle-Aged",
+          "encounters": 73,
+          "inpatient": 5,
+          "readmissions": 0,
+          "readmission_rate": 0.0,
+          "margin_leakage": 6577.32
+        },
+        {
+          "risk_tier": "Low Risk",
+          "age_cohort": "Pediatric",
+          "encounters": 86,
+          "inpatient": 2,
+          "readmissions": 0,
+          "readmission_rate": 0.0,
+          "margin_leakage": 8143.92
+        },
+        {
+          "risk_tier": "Low Risk",
+          "age_cohort": "Senior",
+          "encounters": 11,
+          "inpatient": 0,
+          "readmissions": 0,
+          "readmission_rate": null,
+          "margin_leakage": 901.64
+        },
+        {
+          "risk_tier": "Low Risk",
+          "age_cohort": "Young Adult",
+          "encounters": 299,
+          "inpatient": 13,
+          "readmissions": 0,
+          "readmission_rate": 0.0,
+          "margin_leakage": 25826.02
+        },
+        {
+          "risk_tier": "Moderate Risk",
+          "age_cohort": "Middle-Aged",
+          "encounters": 170,
+          "inpatient": 29,
+          "readmissions": 0,
+          "readmission_rate": 0.0,
+          "margin_leakage": 13858.88
+        },
+        {
+          "risk_tier": "Moderate Risk",
+          "age_cohort": "Pediatric",
+          "encounters": 78,
+          "inpatient": 45,
+          "readmissions": 7,
+          "readmission_rate": 0.1556,
+          "margin_leakage": 6572.4
+        },
+        {
+          "risk_tier": "Moderate Risk",
+          "age_cohort": "Senior",
+          "encounters": 95,
+          "inpatient": 25,
+          "readmissions": 0,
+          "readmission_rate": 0.0,
+          "margin_leakage": 7472.32
+        },
+        {
+          "risk_tier": "Moderate Risk",
+          "age_cohort": "Young Adult",
+          "encounters": 307,
+          "inpatient": 56,
+          "readmissions": 0,
+          "readmission_rate": 0.0,
+          "margin_leakage": 26780.92
+        }
+      ],
+      "view4_payers": [
+        {
+          "payer_display": "Medicare",
+          "payer_group": "Insured Payer",
+          "encounters": 1114,
+          "inpatient": 176,
+          "readmissions": 16,
+          "readmission_rate": 0.0909,
+          "total_claim_cost": 143832.57,
+          "payer_coverage": 36860.57,
+          "margin_leakage": 106972.0,
+          "coverage_rate": 0.2563,
+          "uncovered_share": 0.7437
+        },
+        {
+          "payer_display": "Self-Pay / Uncompensated Care",
+          "payer_group": "Self-Pay / Uncompensated Care",
+          "encounters": 435,
+          "inpatient": 177,
+          "readmissions": 54,
+          "readmission_rate": 0.3051,
+          "total_claim_cost": 55254.54,
+          "payer_coverage": 0.0,
+          "margin_leakage": 55254.54,
+          "coverage_rate": 0.0,
+          "uncovered_share": 1.0
+        },
+        {
+          "payer_display": "Blue Cross Blue Shield",
+          "payer_group": "Insured Payer",
+          "encounters": 524,
+          "inpatient": 245,
+          "readmissions": 72,
+          "readmission_rate": 0.2939,
+          "total_claim_cost": 66491.43,
+          "payer_coverage": 18688.31,
+          "margin_leakage": 47803.12,
+          "coverage_rate": 0.2811,
+          "uncovered_share": 0.7189
+        },
+        {
+          "payer_display": "Medicaid",
+          "payer_group": "Insured Payer",
+          "encounters": 577,
+          "inpatient": 171,
+          "readmissions": 37,
+          "readmission_rate": 0.2164,
+          "total_claim_cost": 73233.57,
+          "payer_coverage": 30936.81,
+          "margin_leakage": 42296.76,
+          "coverage_rate": 0.4224,
+          "uncovered_share": 0.5776
+        },
+        {
+          "payer_display": "Humana",
+          "payer_group": "Insured Payer",
+          "encounters": 307,
+          "inpatient": 87,
+          "readmissions": 0,
+          "readmission_rate": 0.0,
+          "total_claim_cost": 35880.21,
+          "payer_coverage": 6292.48,
+          "margin_leakage": 29587.73,
+          "coverage_rate": 0.1754,
+          "uncovered_share": 0.8246
+        },
+        {
+          "payer_display": "UnitedHealthcare",
+          "payer_group": "Insured Payer",
+          "encounters": 288,
+          "inpatient": 114,
+          "readmissions": 17,
+          "readmission_rate": 0.1491,
+          "total_claim_cost": 35079.61,
+          "payer_coverage": 11606.65,
+          "margin_leakage": 23472.96,
+          "coverage_rate": 0.3309,
+          "uncovered_share": 0.6691
+        },
+        {
+          "payer_display": "Cigna Health",
+          "payer_group": "Insured Payer",
+          "encounters": 267,
+          "inpatient": 91,
+          "readmissions": 11,
+          "readmission_rate": 0.1209,
+          "total_claim_cost": 34382.38,
+          "payer_coverage": 12068.82,
+          "margin_leakage": 22313.56,
+          "coverage_rate": 0.351,
+          "uncovered_share": 0.649
+        },
+        {
+          "payer_display": "Dual Eligible",
+          "payer_group": "Insured Payer",
+          "encounters": 127,
+          "inpatient": 18,
+          "readmissions": 0,
+          "readmission_rate": 0.0,
+          "total_claim_cost": 16403.32,
+          "payer_coverage": 1487.16,
+          "margin_leakage": 14916.16,
+          "coverage_rate": 0.0907,
+          "uncovered_share": 0.9093
+        },
+        {
+          "payer_display": "Aetna",
+          "payer_group": "Insured Payer",
+          "encounters": 139,
+          "inpatient": 8,
+          "readmissions": 0,
+          "readmission_rate": 0.0,
+          "total_claim_cost": 17901.57,
+          "payer_coverage": 6685.13,
+          "margin_leakage": 11216.44,
+          "coverage_rate": 0.3734,
+          "uncovered_share": 0.6266
+        },
+        {
+          "payer_display": "Anthem",
+          "payer_group": "Insured Payer",
+          "encounters": 36,
+          "inpatient": 1,
+          "readmissions": 0,
+          "readmission_rate": 0.0,
+          "total_claim_cost": 4649.76,
+          "payer_coverage": 0.0,
+          "margin_leakage": 4649.76,
+          "coverage_rate": 0.0,
+          "uncovered_share": 1.0
+        }
+      ],
+      "service_lines": [
+        {
+          "service_line": "General Medicine",
+          "encounters": 3378,
+          "inpatient": 1034,
+          "readmissions": 207,
+          "readmission_rate": 0.2002,
+          "claim_cost": 426795.2,
+          "margin_leakage": 327380.95
+        },
+        {
+          "service_line": "Obstetrics",
+          "encounters": 259,
+          "inpatient": 1,
+          "readmissions": 0,
+          "readmission_rate": 0.0,
+          "claim_cost": 33452.44,
+          "margin_leakage": 17289.88
+        },
+        {
+          "service_line": "Cardiology",
+          "encounters": 103,
+          "inpatient": 30,
+          "readmissions": 0,
+          "readmission_rate": 0.0,
+          "claim_cost": 13303.48,
+          "margin_leakage": 7838.96
+        },
+        {
+          "service_line": "Pulmonology",
+          "encounters": 53,
+          "inpatient": 3,
+          "readmissions": 0,
+          "readmission_rate": 0.0,
+          "claim_cost": 6845.48,
+          "margin_leakage": 4444.92
+        },
+        {
+          "service_line": "Orthopedics",
+          "encounters": 21,
+          "inpatient": 20,
+          "readmissions": 0,
+          "readmission_rate": 0.0,
+          "claim_cost": 2712.36,
+          "margin_leakage": 1528.32
+        }
+      ],
+      "los_outliers": {
+        "count": 1,
+        "max_los_days": 74.17,
+        "min_los_days": 74.17,
+        "top_drivers": [
+          [
+            "Encounter for symptom (Breast oncology follow-up)",
+            1
+          ]
+        ]
+      }
+    }
+  },
+  "patient_demographics": {
+    "total_patients_dim": 1171,
+    "gender": {
+      "M": 562,
+      "F": 609
+    },
+    "race": {
+      "white": 965,
+      "black": 101,
+      "asian": 90,
+      "native": 13,
+      "other": 2
+    },
+    "state": {
+      "Massachusetts": 1171
+    },
+    "age_cohort": {
+      "Young Adult": 396,
+      "Pediatric": 150,
+      "Senior": 288,
+      "Middle-Aged": 337
+    },
+    "risk_tier": {
+      "Moderate Risk": 335,
+      "Low Risk": 417,
+      "High Risk": 419
+    },
+    "deceased": 171
+  }
+}
