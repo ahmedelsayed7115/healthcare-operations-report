@@ -49,7 +49,7 @@ def build_view1_svg():
     ml, mr, mt, mb = 64, 68, 86, 62
     pw, ph = w - ml - mr, h - mt - mb
 
-    max_vol = 500
+    max_vol = 600
     max_rate = 0.35
 
     out = [svg_header(w, h, "Annual Encounter Volume & 30-Day Inpatient Readmission Rate (2011-2020)")]
@@ -78,8 +78,8 @@ def build_view1_svg():
         lx += 28 + len(lbl) * 6.8
 
     # Horizontal gridlines & left/right Y axes
-    for i in range(6):
-        v = i * 100
+    for i in range(5):
+        v = i * 150
         y = mt + ph - (v / max_vol) * ph
         out.append(f'<line x1="{ml}" y1="{y:.1f}" x2="{ml+pw}" y2="{y:.1f}" stroke="#f1f5f9" stroke-width="1"/>')
         out.append(f'<text x="{ml-10}" y="{y+4:.1f}" text-anchor="end" {STYLE_AXIS}>{v}</text>')
@@ -250,7 +250,7 @@ def build_view4_svg():
     out.append(f'<text x="{ml+10}" y="{mt+18}" font-family="{FONT}" font-size="10" font-weight="700" fill="#b91c1c">HIGH RISK / LOW COVERAGE</text>')
     out.append(f'<text x="{ml+pw-10}" y="{mt+18}" text-anchor="end" font-family="{FONT}" font-size="10" font-weight="700" fill="#b45309">HIGH READMISSION / ABOVE-AVG COVERAGE</text>')
     out.append(f'<text x="{ml+pw-10}" y="{mt+ph-10}" text-anchor="end" font-family="{FONT}" font-size="10" font-weight="700" fill="#15803d">OPTIMAL QUADRANT</text>')
-    out.append(f'<text x="{ml+10}" y="{mt+ph-10}" font-family="{FONT}" font-size="10" font-weight="700" fill="#475569">LOW COVERAGE / LOW READMISSION</text>')
+    out.append(f'<text x="{bx-10:.1f}" y="{mt+ph-10}" text-anchor="end" font-family="{FONT}" font-size="10" font-weight="700" fill="#475569">LOW COVERAGE / LOW READMISSION</text>')
 
     for pct in [0, 10, 20, 30, 40]:
         x = ml + ((pct / 100.0) / max_cov) * pw
@@ -272,16 +272,16 @@ def build_view4_svg():
     max_leak = max(p["margin_leakage"] for p in payers)
 
     offsets = {
-        "Medicare": (18, -14),
-        "Self-Pay / Uncompensated Care": (18, -10),
-        "Blue Cross Blue Shield": (-16, -22),
-        "Medicaid": (-10, -24),
-        "Humana": (-12, -18),
-        "Cigna Health": (14, 16),
-        "UnitedHealthcare": (16, 4),
-        "Aetna": (14, 4),
-        "Dual Eligible": (12, -10),
-        "Anthem": (12, -12),
+        "Medicare": (30, 10),
+        "Self-Pay / Uncompensated Care": (26, -6),
+        "Blue Cross Blue Shield": (-26, -22),
+        "Medicaid": (-16, -26),
+        "Humana": (-20, -18),
+        "Cigna Health": (16, 16),
+        "UnitedHealthcare": (18, 4),
+        "Aetna": (16, -8),
+        "Dual Eligible": (14, -12),
+        "Anthem": (14, -22),
     }
 
     for p in payers:
