@@ -1,77 +1,69 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 920 480" width="920" height="480" role="img" aria-label="Payer Quadrant: Coverage Rate vs Inpatient Readmission Rate">
-<defs><style>
-  text { font-family: Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; }
-  .title { font-size: 18px; font-weight: 700; fill: #0f172a; }
-  .subtitle { font-size: 12px; fill: #64748b; }
-  .axis { font-size: 11px; fill: #475569; }
-  .label { font-size: 11px; font-weight: 600; fill: #1e293b; }
-  .small { font-size: 10px; fill: #64748b; }
-</style></defs>
 <rect width="920" height="480" rx="12" fill="#ffffff" stroke="#e2e8f0" stroke-width="1"/>
 
-<text x="28" y="34" class="title">Payer Quadrant: Payer Coverage Rate vs. 30-Day Inpatient Readmission Rate</text>
-<text x="28" y="54" class="subtitle">Bubble size = inpatient stays  •  Color intensity = uncovered claim cost (margin leakage)  •  Diamond = Self-Pay  •  Benchmarks: 25.8% coverage, 15.0% readmission</text>
+<text x="28" y="34" font-family="Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="18" font-weight="700" fill="#0f172a">Payer Quadrant: Payer Coverage Rate vs. 30-Day Inpatient Readmission Rate</text>
+<text x="28" y="54" font-family="Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="12" fill="#64748b">Bubble size = inpatient stays  •  Color intensity = uncovered claim cost (margin leakage)  •  Diamond = Self-Pay  •  Benchmarks: 25.8% coverage, 15.0% readmission</text>
 <rect x="72" y="86" width="459.8" height="210.9" fill="#fef2f2" opacity="0.55"/>
 <rect x="531.8" y="296.9" width="342.2" height="117.1" fill="#f0fdf4" opacity="0.65"/>
-<text x="82" y="104" style="font-size:10px;font-weight:700;fill:#b91c1c;">HIGH RISK / LOW COVERAGE</text>
-<text x="864" y="104" text-anchor="end" style="font-size:10px;font-weight:700;fill:#b45309;">HIGH READMISSION / ABOVE-AVG COVERAGE</text>
-<text x="864" y="404" text-anchor="end" style="font-size:10px;font-weight:700;fill:#15803d;">OPTIMAL QUADRANT</text>
-<text x="82" y="404" style="font-size:10px;font-weight:700;fill:#475569;">LOW COVERAGE / LOW READMISSION</text>
+<text x="82" y="104" font-family="Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="10" font-weight="700" fill="#b91c1c">HIGH RISK / LOW COVERAGE</text>
+<text x="864" y="104" text-anchor="end" font-family="Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="10" font-weight="700" fill="#b45309">HIGH READMISSION / ABOVE-AVG COVERAGE</text>
+<text x="864" y="404" text-anchor="end" font-family="Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="10" font-weight="700" fill="#15803d">OPTIMAL QUADRANT</text>
+<text x="82" y="404" font-family="Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="10" font-weight="700" fill="#475569">LOW COVERAGE / LOW READMISSION</text>
 <line x1="72.0" y1="86" x2="72.0" y2="414" stroke="#e2e8f0" stroke-width="1"/>
-<text x="72.0" y="434" text-anchor="middle" class="axis">0%</text>
+<text x="72.0" y="434" text-anchor="middle" font-family="Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="11" fill="#475569">0%</text>
 <line x1="250.2" y1="86" x2="250.2" y2="414" stroke="#e2e8f0" stroke-width="1"/>
-<text x="250.2" y="434" text-anchor="middle" class="axis">10%</text>
+<text x="250.2" y="434" text-anchor="middle" font-family="Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="11" fill="#475569">10%</text>
 <line x1="428.4" y1="86" x2="428.4" y2="414" stroke="#e2e8f0" stroke-width="1"/>
-<text x="428.4" y="434" text-anchor="middle" class="axis">20%</text>
+<text x="428.4" y="434" text-anchor="middle" font-family="Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="11" fill="#475569">20%</text>
 <line x1="606.7" y1="86" x2="606.7" y2="414" stroke="#e2e8f0" stroke-width="1"/>
-<text x="606.7" y="434" text-anchor="middle" class="axis">30%</text>
+<text x="606.7" y="434" text-anchor="middle" font-family="Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="11" fill="#475569">30%</text>
 <line x1="784.9" y1="86" x2="784.9" y2="414" stroke="#e2e8f0" stroke-width="1"/>
-<text x="784.9" y="434" text-anchor="middle" class="axis">40%</text>
+<text x="784.9" y="434" text-anchor="middle" font-family="Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="11" fill="#475569">40%</text>
 <line x1="72" y1="414.0" x2="874" y2="414.0" stroke="#e2e8f0" stroke-width="1"/>
-<text x="62" y="418.0" text-anchor="end" class="axis">0%</text>
+<text x="62" y="418.0" text-anchor="end" font-family="Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="11" fill="#475569">0%</text>
 <line x1="72" y1="335.9" x2="874" y2="335.9" stroke="#e2e8f0" stroke-width="1"/>
-<text x="62" y="339.9" text-anchor="end" class="axis">10%</text>
+<text x="62" y="339.9" text-anchor="end" font-family="Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="11" fill="#475569">10%</text>
 <line x1="72" y1="257.8" x2="874" y2="257.8" stroke="#e2e8f0" stroke-width="1"/>
-<text x="62" y="261.8" text-anchor="end" class="axis">20%</text>
+<text x="62" y="261.8" text-anchor="end" font-family="Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="11" fill="#475569">20%</text>
 <line x1="72" y1="179.7" x2="874" y2="179.7" stroke="#e2e8f0" stroke-width="1"/>
-<text x="62" y="183.7" text-anchor="end" class="axis">30%</text>
+<text x="62" y="183.7" text-anchor="end" font-family="Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="11" fill="#475569">30%</text>
 <line x1="72" y1="101.6" x2="874" y2="101.6" stroke="#e2e8f0" stroke-width="1"/>
-<text x="62" y="105.6" text-anchor="end" class="axis">40%</text>
-<text x="473.0" y="458" text-anchor="middle" class="label">Payer Coverage Rate (% of Total Claim Cost)</text>
-<text x="20" y="250.0" text-anchor="middle" class="label" transform="rotate(-90 20 250.0)">30-Day Inpatient Readmission Rate</text>
+<text x="62" y="105.6" text-anchor="end" font-family="Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="11" fill="#475569">40%</text>
+<text x="473.0" y="458" text-anchor="middle" font-family="Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="11" font-weight="600" fill="#1e293b">Payer Coverage Rate (% of Total Claim Cost)</text>
+<text x="20" y="250.0" text-anchor="middle" font-family="Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="11" font-weight="600" fill="#1e293b" transform="rotate(-90 20 250.0)">30-Day Inpatient Readmission Rate</text>
 <line x1="531.8" y1="86" x2="531.8" y2="414" stroke="#64748b" stroke-width="1.5" stroke-dasharray="5 4"/>
-<text x="537.8" y="120" class="small">Avg Coverage: 25.8%</text>
+<text x="537.8" y="120" font-family="Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="10" fill="#64748b">Avg Coverage: 25.8%</text>
 <line x1="72" y1="296.9" x2="874" y2="296.9" stroke="#f59e0b" stroke-width="1.5" stroke-dasharray="5 4"/>
-<text x="82" y="290.9" style="font-size:10px;font-weight:600;fill:#d97706;">Readmission Goal: 15.0%</text>
+<text x="82" y="290.9" font-family="Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="10" font-weight="600" fill="#d97706">Readmission Goal: 15.0%</text>
 <circle cx="624.7" cy="160.7" r="26.0" fill="#991b1b" fill-opacity="0.78" stroke="#1e293b" stroke-width="1.2"/>
-<text x="642.7" y="146.7" text-anchor="start" class="label">Medicare</text>
-<text x="642.7" y="158.7" text-anchor="start" class="small">32.4% readm • $180.1k uncov</text>
+<text x="642.7" y="146.7" text-anchor="start" font-family="Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="11" font-weight="600" fill="#1e293b">Medicare</text>
+<text x="642.7" y="158.7" text-anchor="start" font-family="Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="10" fill="#64748b">32.4% readm • $180.1k uncov</text>
 <polygon points="72.0,164.6 94.7,187.3 72.0,210.0 49.3,187.3" fill="#dc2626" fill-opacity="0.82" stroke="#1e293b" stroke-width="1.5"/>
-<text x="90.0" y="177.3" text-anchor="start" class="label">Self-Pay</text>
-<text x="90.0" y="189.3" text-anchor="start" class="small">29.0% readm • $92.6k uncov</text>
+<text x="90.0" y="177.3" text-anchor="start" font-family="Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="11" font-weight="600" fill="#1e293b">Self-Pay</text>
+<text x="90.0" y="189.3" text-anchor="start" font-family="Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="10" fill="#64748b">29.0% readm • $92.6k uncov</text>
 <circle cx="489.0" cy="214.1" r="22.3" fill="#dc2626" fill-opacity="0.78" stroke="#1e293b" stroke-width="1.2"/>
-<text x="473.0" y="192.1" text-anchor="end" class="label">Blue Cross Blue Shield</text>
-<text x="473.0" y="204.1" text-anchor="end" class="small">25.6% readm • $76.4k uncov</text>
+<text x="473.0" y="192.1" text-anchor="end" font-family="Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="11" font-weight="600" fill="#1e293b">Blue Cross Blue Shield</text>
+<text x="473.0" y="204.1" text-anchor="end" font-family="Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="10" fill="#64748b">25.6% readm • $76.4k uncov</text>
 <circle cx="754.4" cy="269.2" r="23.2" fill="#f97316" fill-opacity="0.78" stroke="#1e293b" stroke-width="1.2"/>
-<text x="744.4" y="245.2" text-anchor="end" class="label">Medicaid</text>
-<text x="744.4" y="257.2" text-anchor="end" class="small">18.5% readm • $71.8k uncov</text>
+<text x="744.4" y="245.2" text-anchor="end" font-family="Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="11" font-weight="600" fill="#1e293b">Medicaid</text>
+<text x="744.4" y="257.2" text-anchor="end" font-family="Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="10" fill="#64748b">18.5% readm • $71.8k uncov</text>
 <circle cx="439.3" cy="289.9" r="17.7" fill="#f97316" fill-opacity="0.78" stroke="#1e293b" stroke-width="1.2"/>
-<text x="427.3" y="271.9" text-anchor="end" class="label">Humana</text>
-<text x="427.3" y="283.9" text-anchor="end" class="small">15.9% readm • $43.2k uncov</text>
+<text x="427.3" y="271.9" text-anchor="end" font-family="Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="11" font-weight="600" fill="#1e293b">Humana</text>
+<text x="427.3" y="283.9" text-anchor="end" font-family="Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="10" fill="#64748b">15.9% readm • $43.2k uncov</text>
 <circle cx="560.2" cy="334.4" r="15.9" fill="#f97316" fill-opacity="0.78" stroke="#1e293b" stroke-width="1.2"/>
-<text x="574.2" y="350.4" text-anchor="start" class="label">Cigna Health</text>
-<text x="574.2" y="362.4" text-anchor="start" class="small">10.2% readm • $42.9k uncov</text>
+<text x="574.2" y="350.4" text-anchor="start" font-family="Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="11" font-weight="600" fill="#1e293b">Cigna Health</text>
+<text x="574.2" y="362.4" text-anchor="start" font-family="Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="10" fill="#64748b">10.2% readm • $42.9k uncov</text>
 <circle cx="623.1" cy="311.1" r="16.8" fill="#64748b" fill-opacity="0.78" stroke="#1e293b" stroke-width="1.2"/>
-<text x="639.1" y="315.1" text-anchor="start" class="label">UnitedHealthcare</text>
-<text x="639.1" y="327.1" text-anchor="start" class="small">13.2% readm • $34.2k uncov</text>
+<text x="639.1" y="315.1" text-anchor="start" font-family="Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="11" font-weight="600" fill="#1e293b">UnitedHealthcare</text>
+<text x="639.1" y="327.1" text-anchor="start" font-family="Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="10" fill="#64748b">13.2% readm • $34.2k uncov</text>
 <circle cx="647.8" cy="125.4" r="12.4" fill="#64748b" fill-opacity="0.78" stroke="#1e293b" stroke-width="1.2"/>
-<text x="661.8" y="129.4" text-anchor="start" class="label">Aetna</text>
-<text x="661.8" y="141.4" text-anchor="start" class="small">37.0% readm • $22.9k uncov</text>
+<text x="661.8" y="129.4" text-anchor="start" font-family="Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="11" font-weight="600" fill="#1e293b">Aetna</text>
+<text x="661.8" y="141.4" text-anchor="start" font-family="Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="10" fill="#64748b">37.0% readm • $22.9k uncov</text>
 <circle cx="254.9" cy="414.0" r="10.8" fill="#64748b" fill-opacity="0.78" stroke="#1e293b" stroke-width="1.2"/>
-<text x="266.9" y="404.0" text-anchor="start" class="label">Dual Eligible</text>
-<text x="266.9" y="416.0" text-anchor="start" class="small">0.0% readm • $17.6k uncov</text>
+<text x="266.9" y="404.0" text-anchor="start" font-family="Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="11" font-weight="600" fill="#1e293b">Dual Eligible</text>
+<text x="266.9" y="416.0" text-anchor="start" font-family="Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="10" fill="#64748b">0.0% readm • $17.6k uncov</text>
 <circle cx="72.0" cy="414.0" r="7.3" fill="#64748b" fill-opacity="0.78" stroke="#1e293b" stroke-width="1.2"/>
-<text x="84.0" y="402.0" text-anchor="start" class="label">Anthem</text>
-<text x="84.0" y="414.0" text-anchor="start" class="small">0.0% readm • $5.9k uncov</text>
-<text x="28" y="468" class="small">Medicare ($180.1k) and Self-Pay ($92.6k) account for 46.4% of total uncovered claim cost ($587.5k). Cigna &amp; UnitedHealthcare sit in the optimal quadrant.</text>
+<text x="84.0" y="402.0" text-anchor="start" font-family="Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="11" font-weight="600" fill="#1e293b">Anthem</text>
+<text x="84.0" y="414.0" text-anchor="start" font-family="Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="10" fill="#64748b">0.0% readm • $5.9k uncov</text>
+<text x="28" y="468" font-family="Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="10" fill="#64748b">Medicare ($180.1k) and Self-Pay ($92.6k) account for 46.4% of total uncovered claim cost ($587.5k). Cigna &amp; UnitedHealthcare sit in the optimal quadrant.</text>
 </svg>

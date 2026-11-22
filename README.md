@@ -1,6 +1,6 @@
 # Healthcare Operations & 30-Day Readmission Executive Report
 
-> **Source Workbook:** [`Healthcare_Operations_Readmission_Dashboard.twbx`](Healthcare_Operations_Readmission_Dashboard.twbx)  
+> **Source Workbook:** [`Healthcare_Operations_Readmission_Dashboard.twbx`](Healthcare_Operations_Readmission_Dashboard.twbx) *(Tableau Public interactive link coming soon — download `.twbx` to inspect locally)*  
 > **Scope:** 6,301 acute encounters across 941 unique Massachusetts patients (Full Historical Scope: 1923–2020; Operational Window: 2011–2020, n = 3,814)  
 > **Live Interactive Dashboard:** [View on GitHub Pages](https://ahmedelsayed7115.github.io/healthcare-operations-report/)
 
@@ -150,9 +150,12 @@ An end-to-end operational, clinical, and financial audit of **6,301 acute care e
 
 ---
 
-## Methodology & Repository Structure
+## Methodology, Data Provenance & Repository Structure
 
-All metrics are computed directly from the packaged workbook's underlying tables (`fact_encounters_v1.csv`, 6,301 rows; `dim_patients_v1.csv`, 1,171 rows) using exact Tableau calculated field formulas:
+- **Data Provenance & Privacy:** All patient and encounter records are 100% synthetic, HIPAA-safe Electronic Health Record (EHR) data generated via [**MITRE Synthea™**](https://synthetichealth.github.io/synthea/) (Massachusetts cohort; zero real Protected Health Information).
+- **SQL ETL & Data Modeling:** Star-schema tables (`fact_encounters_v1.csv`, 6,301 rows; `dim_patients_v1.csv`, 1,171 rows) are modeled in DuckDB SQL ([`scripts/build_healthcare_dw.sql`](scripts/build_healthcare_dw.sql)), using `LEAD()` window functions for 30-day inpatient readmission tracking, `AVG() OVER()` department benchmarks for O/E Length of Stay, and `is_los_outlier` flagging to isolate unclosed historical encounters.
+
+All KPIs match the Tableau workbook's exact calculated field formulas:
 - **Inpatient Readmission Rate:** `SUM(is_30d_readmission) / SUM(is_inpatient)`
 - **Clean O/E LOS Ratio:** `SUM(actual_los_days WHERE is_los_outlier=0) / SUM(expected_los_days_clean WHERE is_los_outlier=0)`
 - **Payer Coverage Rate:** `SUM(payer_coverage) / SUM(total_claim_cost)`
@@ -172,5 +175,6 @@ healthcare-operations-report/
 ├── data/
 │   └── analysis_summary.json                        # Exact computed metrics for full & 2011–2020 scopes
 └── scripts/
-    └── generate_report_assets.py                    # Reproducible SVG & metrics generator
+    ├── build_healthcare_dw.sql                      # DuckDB SQL ETL (LEAD(), AVG() OVER(), outlier flags)
+    └── generate_report_assets.py                    # Portable SVG chart generator (relative paths, inline SVG styles)
 ```
