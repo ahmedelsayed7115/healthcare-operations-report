@@ -3,257 +3,751 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Healthcare Operations &amp; 30-Day Readmission Executive Report</title>
+<title>Healthcare Operations &amp; 30-Day Readmission Intelligence | Ahmed Elsayed</title>
+<meta name="description" content="End-to-end Healthcare Operations & Revenue Cycle analytics: DuckDB SQL Star Schema + 4-view Tableau executive suite diagnosing 23.88% inpatient readmissions and $587.5K in uncovered claim cost.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
 <style>
   :root {
-    --bg: #f8fafc;
-    --card: #ffffff;
-    --border: #e2e8f0;
-    --text: #0f172a;
-    --muted: #64748b;
-    --crimson: #dc2626;
-    --crimson-soft: #fef2f2;
-    --teal: #0f766e;
-    --teal-soft: #f0fdfa;
-    --amber: #d97706;
-    --amber-soft: #fffbeb;
-    --blue: #2563eb;
+    --bg: #0B1220;
+    --bg-2: #0F1A2E;
+    --card: #131F36;
+    --border: #22324F;
+    --text: #E6ECF5;
+    --muted: #93A3BC;
+    --navy: #112D4E;
+    --blue: #3F72AF;
+    --ice: #DBE2EF;
+    --red: #EF4444;
+    --teal: #14B8A6;
+    --amber: #F59E0B;
+    --radius: 16px;
   }
   * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
   body {
-    font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    font-family: 'Inter', 'Segoe UI', sans-serif;
     background: var(--bg);
     color: var(--text);
-    line-height: 1.55;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
   }
-  header {
-    background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
-    color: #fff;
-    padding: 2.25rem 1.5rem;
-    border-bottom: 4px solid var(--crimson);
+  a { color: inherit; text-decoration: none; }
+  .container { max-width: 1180px; margin: 0 auto; padding: 0 24px; }
+
+  /* NAV */
+  nav {
+    position: sticky; top: 0; z-index: 50;
+    background: rgba(11, 18, 32, 0.85);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
   }
-  .container { max-width: 1120px; margin: 0 auto; padding: 0 1.25rem; }
-  .header-row {
-    display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 1rem;
+  nav .container { display: flex; align-items: center; justify-content: space-between; height: 64px; gap: 16px; }
+  .brand { display: flex; align-items: center; gap: 10px; font-weight: 700; white-space: nowrap; }
+  .brand-badge {
+    width: 34px; height: 34px; border-radius: 9px;
+    background: linear-gradient(135deg, var(--red), var(--navy));
+    display: grid; place-items: center; font-size: 13px; font-weight: 800; color: #fff;
   }
-  header h1 { font-size: 1.75rem; font-weight: 800; letter-spacing: -0.02em; }
-  header p { color: #cbd5e1; font-size: 0.95rem; margin-top: 0.35rem; }
-  .toggle-group {
-    display: inline-flex; background: rgba(255,255,255,0.1); border-radius: 10px; padding: 4px;
-    border: 1px solid rgba(255,255,255,0.18);
+  .nav-links { display: flex; gap: 20px; font-size: 13.5px; color: var(--muted); white-space: nowrap; }
+  .nav-links a:hover { color: var(--text); }
+  .nav-right { display: flex; align-items: center; gap: 10px; flex-shrink: 0; }
+  .scope-group {
+    display: inline-flex; background: var(--bg-2); border: 1px solid var(--border);
+    border-radius: 10px; padding: 3px; white-space: nowrap;
   }
-  .toggle-btn {
-    border: none; background: transparent; color: #cbd5e1; font-weight: 600; font-size: 0.85rem;
-    padding: 0.5rem 0.95rem; border-radius: 7px; cursor: pointer; transition: all 0.15s ease;
+  .scope-btn {
+    border: none; background: transparent; color: var(--muted); font-weight: 600; font-size: 12px;
+    padding: 6px 10px; border-radius: 7px; cursor: pointer; transition: all .15s ease;
+    font-family: inherit; white-space: nowrap;
   }
-  .toggle-btn.active { background: #ffffff; color: #0f172a; box-shadow: 0 1px 3px rgba(0,0,0,0.2); }
-  main { padding: 1.75rem 0 3.5rem; }
-  .kpi-grid {
-    display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: 1rem;
-    margin-bottom: 1.75rem;
+  .scope-btn.active { background: var(--blue); color: #fff; }
+  .btn {
+    display: inline-flex; align-items: center; gap: 8px;
+    padding: 10px 18px; border-radius: 10px; font-weight: 600; font-size: 14px;
+    transition: transform .15s ease, box-shadow .15s ease, background .15s ease;
+    cursor: pointer; white-space: nowrap;
   }
-  .kpi-card {
-    background: var(--card); border: 1px solid var(--border); border-radius: 12px; padding: 1.25rem;
-    box-shadow: 0 1px 2px rgba(15,23,42,0.04); position: relative; overflow: hidden;
+  .btn:hover { transform: translateY(-2px); }
+  .btn-primary { background: var(--blue); color: #fff; box-shadow: 0 8px 24px rgba(63,114,175,.35); }
+  .btn-primary:hover { background: #4F82BF; }
+  .btn-ghost { border: 1px solid var(--border); color: var(--text); }
+  .btn-ghost:hover { border-color: var(--blue); }
+
+  /* HERO */
+  .hero { padding: 92px 0 72px; position: relative; overflow: hidden; }
+  .hero::before {
+    content: ""; position: absolute; inset: -200px -100px auto auto;
+    width: 640px; height: 640px; border-radius: 50%;
+    background: radial-gradient(circle, rgba(239,68,68,.20), transparent 65%);
+    pointer-events: none;
   }
-  .kpi-card::before {
-    content: ""; position: absolute; top: 0; left: 0; right: 0; height: 4px; background: var(--crimson);
+  .eyebrow {
+    display: inline-block; font-size: 12px; font-weight: 600; letter-spacing: .12em;
+    text-transform: uppercase; color: var(--ice);
+    background: rgba(63,114,175,.15); border: 1px solid rgba(63,114,175,.4);
+    padding: 6px 12px; border-radius: 999px; margin-bottom: 22px;
   }
-  .kpi-card.ok::before { background: var(--teal); }
-  .kpi-card.warn::before { background: var(--amber); }
-  .kpi-label { font-size: 0.75rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; color: var(--muted); }
-  .kpi-val { font-size: 2rem; font-weight: 800; margin: 0.35rem 0 0.25rem; letter-spacing: -0.02em; }
-  .kpi-sub { font-size: 0.82rem; color: var(--muted); }
-  .badge {
-    display: inline-block; font-size: 0.72rem; font-weight: 700; padding: 2px 8px; border-radius: 999px;
-    margin-top: 0.5rem;
+  h1 { font-size: clamp(34px, 5vw, 58px); line-height: 1.08; font-weight: 800; letter-spacing: -.02em; max-width: 920px; }
+  h1 .accent { background: linear-gradient(90deg, #F87171, var(--amber)); -webkit-background-clip: text; background-clip: text; color: transparent; }
+  .hero p.lead { font-size: 19px; color: var(--muted); max-width: 740px; margin: 22px 0 34px; }
+  .hero-actions { display: flex; gap: 14px; flex-wrap: wrap; }
+  .tags { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 34px; }
+  .tag { font-size: 12.5px; color: var(--muted); border: 1px solid var(--border); padding: 5px 11px; border-radius: 8px; background: var(--bg-2); }
+
+  /* KPI STRIP */
+  .kpis { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; margin-top: 64px; }
+  .kpi {
+    background: var(--card); border: 1px solid var(--border); border-radius: var(--radius);
+    padding: 22px; position: relative; overflow: hidden;
+    transition: transform .2s ease, border-color .2s ease;
   }
-  .badge.bad { background: var(--crimson-soft); color: var(--crimson); }
-  .badge.good { background: var(--teal-soft); color: var(--teal); }
-  .badge.warn { background: var(--amber-soft); color: var(--amber); }
-  section {
-    background: var(--card); border: 1px solid var(--border); border-radius: 12px; padding: 1.5rem;
-    margin-bottom: 1.5rem; box-shadow: 0 1px 2px rgba(15,23,42,0.04);
+  .kpi:hover { transform: translateY(-4px); border-color: var(--blue); }
+  .kpi::before { content: ""; position: absolute; left: 0; top: 0; bottom: 0; width: 4px; background: var(--c, var(--blue)); }
+  .kpi .label { font-size: 13px; color: var(--muted); font-weight: 500; }
+  .kpi .value { font-size: 32px; font-weight: 800; margin: 6px 0 2px; color: var(--c, var(--text)); }
+  .kpi .sub { font-size: 12.5px; color: var(--muted); }
+
+  /* SECTIONS */
+  section { padding: 88px 0; }
+  section.alt { background: var(--bg-2); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
+  .section-head { max-width: 780px; margin-bottom: 44px; }
+  .section-head .kicker { font-size: 13px; font-weight: 700; color: var(--blue); letter-spacing: .1em; text-transform: uppercase; }
+  h2 { font-size: clamp(28px, 3.4vw, 40px); font-weight: 800; letter-spacing: -.015em; margin: 8px 0 14px; line-height: 1.15; }
+  .section-head p { color: var(--muted); font-size: 17px; }
+
+  .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+  .grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+  .card { background: var(--card); border: 1px solid var(--border); border-radius: var(--radius); padding: 26px; }
+  .card h3 { font-size: 17px; font-weight: 700; margin-bottom: 4px; }
+  .card .card-sub { font-size: 13.5px; color: var(--muted); margin-bottom: 18px; }
+  .chart-box { position: relative; height: 300px; }
+  .insight {
+    margin-top: 16px; font-size: 14px; color: var(--ice);
+    background: rgba(63,114,175,.1); border-left: 3px solid var(--blue);
+    padding: 10px 14px; border-radius: 0 8px 8px 0;
   }
-  section h2 { font-size: 1.2rem; font-weight: 700; margin-bottom: 0.35rem; }
-  .sec-sub { font-size: 0.88rem; color: var(--muted); margin-bottom: 1rem; }
-  .chart-wrap { width: 100%; overflow-x: auto; margin: 0.75rem 0 1rem; }
-  .chart-wrap img { width: 100%; max-width: 920px; height: auto; display: block; margin: 0 auto; }
-  table { width: 100%; border-collapse: collapse; font-size: 0.87rem; margin-top: 0.5rem; }
-  th, td { padding: 0.65rem 0.75rem; border-bottom: 1px solid var(--border); text-align: left; }
-  th { font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.04em; color: var(--muted); background: #f8fafc; }
+  .insight.red { background: rgba(239,68,68,.08); border-color: var(--red); }
+  .insight.teal { background: rgba(20,184,166,.08); border-color: var(--teal); }
+  .insight.amber { background: rgba(245,158,11,.08); border-color: var(--amber); }
+
+  /* PROBLEM CARDS */
+  .q-card { position: relative; }
+  .q-num { font-size: 13px; font-weight: 800; color: var(--blue); margin-bottom: 10px; }
+  .q-card p { color: var(--muted); font-size: 14.5px; }
+
+  /* TABLE */
+  table { width: 100%; border-collapse: collapse; font-size: 13.5px; }
+  th, td { padding: 10px 10px; text-align: left; border-bottom: 1px solid var(--border); }
+  th { font-size: 11px; text-transform: uppercase; letter-spacing: .06em; color: var(--muted); font-weight: 600; }
   td.num, th.num { text-align: right; font-variant-numeric: tabular-nums; }
-  tr:hover td { background: #f8fafc; }
-  .rec-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1rem; }
-  .rec-card {
-    border: 1px solid var(--border); border-radius: 10px; padding: 1rem 1.15rem; background: #fcfcfd;
+  tr.highlight td { color: var(--red); font-weight: 700; }
+
+  /* RISK MATRIX */
+  .risk-matrix { display: grid; grid-template-columns: 98px repeat(4, 1fr); gap: 8px; }
+  .rm-label { display: flex; align-items: center; font-size: 12px; color: var(--muted); font-weight: 600; }
+  .rm-head { text-align: center; font-size: 11.5px; color: var(--muted); font-weight: 600; padding-bottom: 4px; }
+  .rm-cell { border-radius: 10px; padding: 12px 10px; border: 1px solid var(--border); transition: transform .2s; text-align: center; }
+  .rm-cell:hover { transform: scale(1.04); }
+  .rm-cell .n { font-size: 21px; font-weight: 800; line-height: 1.15; }
+  .rm-cell .t { font-size: 11.5px; font-weight: 600; margin-top: 3px; }
+  .rm-cell .e { font-size: 11px; color: var(--muted); margin-top: 2px; }
+  .rm-teal { background: rgba(20,184,166,.12); } .rm-teal .n { color: var(--teal); }
+  .rm-amber { background: rgba(245,158,11,.12); } .rm-amber .n { color: var(--amber); }
+  .rm-red { background: rgba(239,68,68,.15); } .rm-red .n { color: var(--red); }
+  .rm-slate { background: rgba(148,163,184,.08); } .rm-slate .n { color: var(--muted); }
+
+  /* PIPELINE */
+  .pipeline { display: grid; grid-template-columns: repeat(5, 1fr); gap: 14px; position: relative; }
+  .step { background: var(--card); border: 1px solid var(--border); border-radius: 14px; padding: 20px; position: relative; }
+  .step .s-num { width: 30px; height: 30px; border-radius: 8px; background: var(--navy); border: 1px solid var(--blue); display: grid; place-items: center; font-size: 13px; font-weight: 800; margin-bottom: 12px; }
+  .step h4 { font-size: 15px; margin-bottom: 6px; }
+  .step p { font-size: 13px; color: var(--muted); }
+  .step:not(:last-child)::after { content: "→"; position: absolute; right: -13px; top: 50%; transform: translateY(-50%); color: var(--blue); font-weight: 800; }
+
+  /* GALLERY */
+  .gallery { display: grid; gap: 22px; }
+  .shot { border-radius: var(--radius); overflow: hidden; border: 1px solid var(--border); background: #FFFFFF; }
+  .shot img { width: 100%; display: block; }
+  .shot .cap { padding: 14px 18px; font-size: 14px; color: var(--muted); background: var(--card); border-top: 1px solid var(--border); }
+  .shot .cap b { color: var(--text); }
+
+  /* RECS */
+  .rec { display: grid; grid-template-columns: 56px 1fr auto; gap: 18px; align-items: center; padding: 22px 0; border-bottom: 1px solid var(--border); }
+  .rec:last-child { border-bottom: none; }
+  .rec .p { width: 46px; height: 46px; border-radius: 12px; display: grid; place-items: center; font-weight: 800; background: var(--navy); border: 1px solid var(--blue); }
+  .rec h4 { font-size: 16px; margin-bottom: 3px; }
+  .rec p { font-size: 14px; color: var(--muted); }
+  .rec .roi { text-align: right; font-weight: 800; color: var(--teal); white-space: nowrap; }
+  .rec .roi small { display: block; color: var(--muted); font-weight: 500; font-size: 12px; }
+
+  /* STACK */
+  .stack { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; }
+  .stack .card h3 { font-size: 15px; margin-bottom: 10px; }
+  .stack ul { list-style: none; font-size: 14px; color: var(--muted); }
+  .stack li { padding: 3px 0; }
+  .stack li::before { content: "▸ "; color: var(--blue); }
+
+  /* CTA */
+  .cta { text-align: center; }
+  .cta-box { background: linear-gradient(135deg, var(--navy), #1C3D66); border: 1px solid var(--blue); border-radius: 24px; padding: 60px 30px; }
+  .cta-box p { color: var(--ice); max-width: 620px; margin: 0 auto 30px; }
+  .cta-box .hero-actions { justify-content: center; }
+
+  footer { padding: 34px 0; border-top: 1px solid var(--border); color: var(--muted); font-size: 13.5px; }
+  footer .container { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 10px; }
+
+  /* REVEAL ANIMATION */
+  .reveal { opacity: 0; transform: translateY(24px); transition: opacity .7s ease, transform .7s ease; }
+  .reveal.visible { opacity: 1; transform: none; }
+
+  @media (max-width: 960px) {
+    .kpis, .stack { grid-template-columns: repeat(2, 1fr); }
+    .grid-2, .grid-3 { grid-template-columns: 1fr; }
+    .pipeline { grid-template-columns: 1fr; }
+    .step:not(:last-child)::after { content: "↓"; right: 50%; top: auto; bottom: -18px; transform: translateX(50%); }
+    .nav-links { display: none; }
+    .risk-matrix { grid-template-columns: 76px repeat(4, 1fr); }
+    .rec { grid-template-columns: 46px 1fr; }
+    .rec .roi { grid-column: 2; text-align: left; }
   }
-  .rec-card h3 { font-size: 0.95rem; font-weight: 700; margin: 0.35rem 0; }
-  .rec-card p { font-size: 0.85rem; color: #334155; }
-  footer { text-align: center; color: var(--muted); font-size: 0.82rem; padding: 1.5rem 0 2.5rem; }
-  footer a { color: var(--blue); text-decoration: none; }
+  @media (max-width: 560px) {
+    .kpis, .stack { grid-template-columns: 1fr; }
+    .rm-cell .n { font-size: 16px; }
+    .scope-group { display: none; }
+  }
 </style>
 </head>
 <body>
-<header>
-  <div class="container header-row">
-    <div>
-      <h1>Healthcare Operations &amp; 30-Day Readmission Report</h1>
-      <p>Executive Analytics from <strong>Healthcare_Operations_Readmission_Dashboard.twbx</strong> • Massachusetts Acute Care Network</p>
+
+<!-- NAV -->
+<nav>
+  <div class="container">
+    <a href="#" class="brand"><span class="brand-badge">HO</span> Healthcare Operations</a>
+    <div class="nav-links">
+      <a href="#problem">Problem</a>
+      <a href="#trends">Trends</a>
+      <a href="#risk">Risk Matrix</a>
+      <a href="#payers">Payers</a>
+      <a href="#dashboard">Views</a>
+      <a href="#actions">Actions</a>
     </div>
-    <div class="toggle-group" role="tablist" aria-label="Dataset Scope">
-      <button class="toggle-btn active" id="btn-all" onclick="setScope('all')">Full Scope (n=6,301)</button>
-      <button class="toggle-btn" id="btn-op" onclick="setScope('op')">2011–2020 Window (n=3,814)</button>
+    <div class="nav-right">
+      <div class="scope-group" role="tablist" aria-label="Dataset Scope">
+        <button class="scope-btn active" id="btn-all" onclick="setScope('all')">Full (6,301)</button>
+        <button class="scope-btn" id="btn-op" onclick="setScope('op')">2011–2020</button>
+      </div>
+      <a class="btn btn-primary" href="https://github.com/ahmedelsayed7115/healthcare-operations-report" target="_blank" rel="noopener">View on GitHub</a>
+    </div>
+  </div>
+</nav>
+
+<!-- HERO -->
+<header class="hero">
+  <div class="container">
+    <span class="eyebrow">Healthcare Operations · Revenue Cycle · Tableau &amp; DuckDB SQL</span>
+    <h1>Turning <span class="accent">$587.5K in margin leakage</span> and a 23.9% readmission crisis into an executive action plan.</h1>
+    <p class="lead">An end-to-end clinical, operational, and financial audit of 6,301 acute encounters across 941 Massachusetts patients—combining DuckDB SQL window modeling with a 4-view Tableau executive workbook.</p>
+    <div class="hero-actions">
+      <a class="btn btn-primary" href="#trends">Explore the findings ↓</a>
+      <a class="btn btn-ghost" href="https://github.com/ahmedelsayed7115/healthcare-operations-report/raw/main/Healthcare_Operations_Readmission_Dashboard.twbx">Download .twbx</a>
+    </div>
+    <div class="tags">
+      <span class="tag">DuckDB SQL</span><span class="tag">Tableau (.twbx)</span><span class="tag">LEAD() Window Functions</span>
+      <span class="tag">O/E Length of Stay</span><span class="tag">Payer Margin Leakage</span><span class="tag">Risk Stratification</span>
+      <span class="tag">Python SVG</span><span class="tag">MITRE Synthea™ EHR</span>
+    </div>
+
+    <div class="kpis">
+      <div class="kpi reveal" style="--c: var(--red)">
+        <div class="label">30-Day Readmission Rate</div>
+        <div class="value" id="kpi-readm" data-count="23.88" data-suffix="%" data-dec="2">0%</div>
+        <div class="sub" id="kpi-readm-sub">439 / 1,838 stays (+8.88 pts vs 15% goal)</div>
+      </div>
+      <div class="kpi reveal" style="--c: var(--red)">
+        <div class="label">Uncovered Claim Cost</div>
+        <div class="value" id="kpi-leak" data-count="587.55" data-prefix="$" data-suffix="K" data-dec="2">$0K</div>
+        <div class="sub" id="kpi-leak-sub">74.19% uncovered · 25.81% payer coverage</div>
+      </div>
+      <div class="kpi reveal" style="--c: var(--amber)">
+        <div class="label">High-Risk Readmission Share</div>
+        <div class="value" id="kpi-hr" data-count="97.72" data-suffix="%" data-dec="2">0%</div>
+        <div class="sub" id="kpi-hr-sub">429 of 439 readmissions (78.8% encounters)</div>
+      </div>
+      <div class="kpi reveal" style="--c: var(--teal)">
+        <div class="label">Clean O/E Length of Stay</div>
+        <div class="value" id="kpi-oe" data-count="1.00" data-suffix="×" data-dec="2">0×</div>
+        <div class="sub" id="kpi-oe-sub">1.09d clean avg LOS (vs. 18.04d raw; 5 outliers)</div>
+      </div>
     </div>
   </div>
 </header>
 
-<main class="container">
-  <div class="kpi-grid">
-    <div class="kpi-card">
-      <div class="kpi-label">30-Day Inpatient Readmission Rate</div>
-      <div class="kpi-val" id="kpi-readm">23.88%</div>
-      <div class="kpi-sub" id="kpi-readm-sub">439 readmissions / 1,838 inpatient stays</div>
-      <span class="badge bad" id="kpi-readm-badge">+8.88 pts vs. 15.0% goal</span>
+<!-- PROBLEM -->
+<section id="problem" class="alt">
+  <div class="container">
+    <div class="section-head reveal">
+      <span class="kicker">The Operational Problem</span>
+      <h2>Three critical blind spots across clinical care and billing</h2>
+      <p>Hospital leadership saw elevated inpatient readmissions, severe uncovered claim exposure, and an alarming 18-day raw length of stay—without knowing which patients, payers, or data defects drove them.</p>
     </div>
-    <div class="kpi-card ok">
-      <div class="kpi-label">Clean O/E Length of Stay Ratio</div>
-      <div class="kpi-val" id="kpi-oe">1.00</div>
-      <div class="kpi-sub" id="kpi-oe-sub">1.09d clean avg LOS (18.04d raw; 5 outliers)</div>
-      <span class="badge good">On Target (≤ 1.00)</span>
-    </div>
-    <div class="kpi-card">
-      <div class="kpi-label">Uncovered Claim Cost (Margin Leakage)</div>
-      <div class="kpi-val" id="kpi-leak">$587,546</div>
-      <div class="kpi-sub" id="kpi-leak-sub">74.19% uncovered • 25.81% payer coverage</div>
-      <span class="badge bad">Critical Financial Exposure</span>
-    </div>
-    <div class="kpi-card warn">
-      <div class="kpi-label">Readmissions from High-Risk Patients</div>
-      <div class="kpi-val" id="kpi-hr">97.72%</div>
-      <div class="kpi-sub" id="kpi-hr-sub">429 of 439 readmissions (78.8% of encounters)</div>
-      <span class="badge warn">Extreme Risk Concentration</span>
+    <div class="grid-3">
+      <div class="card q-card reveal">
+        <div class="q-num">01 · READMISSIONS</div>
+        <h3>Why is readmission 8.9 pts above our 15% goal?</h3>
+        <p>Six oncology-related clinical drivers generate 430 of 439 readmissions (97.9%), with Stage 1 Small Cell Lung Cancer hitting a 96.8% inpatient readmission cycle.</p>
+      </div>
+      <div class="card q-card reveal">
+        <div class="q-num">02 · REVENUE LEAKAGE</div>
+        <h3>Where is $587,546 in claim cost going uncovered?</h3>
+        <p>Payers cover just 25.81% of $791,981 in total claims. Medicare ($180.1K) and Self-Pay / Uncompensated Care ($92.6K) alone generate 46.4% of total leakage.</p>
+      </div>
+      <div class="card q-card reveal">
+        <div class="q-num">03 · DATA QUALITY</div>
+        <h3>Is inpatient length of stay really 18.04 days?</h3>
+        <p>Just 5 unclosed outlier encounters (74 to 20,215 days) inflated raw inpatient LOS by 16.5×; isolating them reveals a healthy 1.09-day clean average (1.00 O/E).</p>
+      </div>
     </div>
   </div>
+</section>
 
-  <section>
-    <h2>1. Annual Encounter Volume &amp; 30-Day Readmission Trend (2011–2020)</h2>
-    <p class="sec-sub">Inpatient readmission rates breached the 15.0% target in 7 of 10 years, peaking at 26.8% in 2015 while urgent care expanded steadily.</p>
-    <div class="chart-wrap"><img src="assets/view1_annual_trend.svg" alt="Annual Encounter Volume and Readmission Trend"></div>
-  </section>
-
-  <section>
-    <h2>2. Top 10 Clinical Drivers of Inpatient Readmissions</h2>
-    <p class="sec-sub">Oncology-related drivers account for 97.9% (430/439) of all inpatient readmissions; NSCLC &amp; Breast oncology alone accounts for 80.0%.</p>
-    <div class="chart-wrap"><img src="assets/view2_clinical_drivers.svg" alt="Top 10 Clinical Drivers of Inpatient Readmissions"></div>
-  </section>
-
-  <section>
-    <h2>3. Risk Tier × Age Cohort Readmission Heatmap</h2>
-    <p class="sec-sub">High-Risk Middle-Aged (39.0%) and High-Risk Senior (25.8%) generate 94.8% of all readmissions; Moderate-Risk Pediatric (20.4%) is the sole non-High-Risk signal.</p>
-    <div class="chart-wrap"><img src="assets/view3_risk_heatmap.svg" alt="Risk Tier by Age Cohort Heatmap"></div>
-  </section>
-
-  <section>
-    <h2>4. Payer Quadrant: Coverage Rate vs. Inpatient Readmission Rate</h2>
-    <p class="sec-sub">Medicare ($180.1k) and Self-Pay ($92.6k) drive 46.4% of total margin leakage. Cigna Health and UnitedHealthcare occupy the optimal quadrant.</p>
-    <div class="chart-wrap"><img src="assets/view4_payer_quadrant.svg" alt="Payer Coverage vs Readmission Quadrant"></div>
-    <table>
-      <thead>
-        <tr>
-          <th>Payer</th><th>Group</th><th class="num">Encounters</th><th class="num">Inpatient Stays</th>
-          <th class="num">Readmissions</th><th class="num">Readm. Rate</th><th class="num">Coverage Rate</th><th class="num">Margin Leakage</th>
-        </tr>
-      </thead>
-      <tbody id="payer-tbody"></tbody>
-    </table>
-  </section>
-
-  <section>
-    <h2>5. Prioritized Strategic Action Plan</h2>
-    <p class="sec-sub">Targeted clinical, revenue-cycle, and data-governance interventions derived from the workbook diagnostics.</p>
-    <div class="rec-grid">
-      <div class="rec-card">
-        <span class="badge bad">P1 • Clinical</span>
-        <h3>Oncology Transitional Care &amp; Infusion Pathways</h3>
-        <p>Deploy 72-hour post-discharge nurse navigation for NSCLC, Breast, and Stage 1 SCLC patients (97.9% of readmissions) and evaluate outpatient infusion alternatives to bring overall readmissions below 15%.</p>
+<!-- PILLAR 1: READMISSION TRENDS & DRIVERS -->
+<section id="trends">
+  <div class="container">
+    <div class="section-head reveal">
+      <span class="kicker">Pillar 1 · Encounter Trends &amp; Clinical Drivers</span>
+      <h2>Oncology accounts for 97.9% of all 30-day inpatient readmissions</h2>
+      <p>From 2011 to 2020, inpatient readmissions breached the 15.0% benchmark in 7 of 10 years—peaking at 26.8% (2015) and 25.0% (2018)—while urgent care expanded to become the largest acute channel.</p>
+    </div>
+    <div class="grid-2">
+      <div class="card reveal">
+        <h3>2011–2020 Volume &amp; Readmission Rate</h3>
+        <div class="card-sub">Acute encounters by class vs. 30-day inpatient readmission rate (%)</div>
+        <div class="chart-box"><canvas id="annualTrendChart"></canvas></div>
+        <div class="insight red">Readmissions breached the <b>15.0% target in 7 of 10 years</b>, peaking at <b>26.8% in 2015</b>.</div>
       </div>
-      <div class="rec-card">
-        <span class="badge bad">P1 • Revenue Cycle</span>
-        <h3>Self-Pay Presumptive Eligibility Screening</h3>
-        <p>Screen Self-Pay admissions ($92.6k leakage, 0% coverage, 29.0% readmissions) for Medicaid eligibility (38.3% coverage) at intake to recover $30k–$35k+ while improving post-discharge care continuity.</p>
+      <div class="card reveal">
+        <h3>Top Clinical Drivers of 30-Day Readmissions</h3>
+        <div class="card-sub">Total readmissions &amp; rate across inpatient clinical drivers</div>
+        <div class="chart-box"><canvas id="driversChart"></canvas></div>
+        <div class="insight red">Top 3 oncology drivers generate <b>422 of 439 readmissions (96.1%)</b>; Stage 1 SCLC hits <b>96.8%</b>.</div>
       </div>
-      <div class="rec-card">
-        <span class="badge warn">P2 • Payer Strategy</span>
-        <h3>Medicare HRRP Protection &amp; BCBS Review</h3>
-        <p>Focus High-Risk Senior care management on Medicare (32.4% readm, $180.1k leakage) to mitigate CMS penalties, and audit BCBS denials/contracts (23.4% coverage, 25.6% readm).</p>
+      <div class="card reveal">
+        <h3>Service Line Margin Leakage &amp; Readmissions</h3>
+        <div class="card-sub">Uncovered claim exposure ($K) across 5 clinical service lines</div>
+        <div class="chart-box"><canvas id="serviceLineChart"></canvas></div>
+        <div class="insight"><b>General Medicine ($538.1K leakage, 23.9% readm)</b> and <b>Pulmonology (71.4% readm)</b> carry 100% of readmissions.</div>
       </div>
-      <div class="rec-card">
-        <span class="badge good">P3 • Data Governance</span>
-        <h3>EHR Open-Encounter Closure Validation</h3>
-        <p>Automate 30-day open-encounter alerts to eliminate extreme LOS outliers (5 records spanning 74–20,215 days that distort raw inpatient LOS from 1.09d to 18.04d).</p>
+      <div class="card reveal">
+        <h3>LOS Outlier Audit: Raw vs. Clean Average LOS</h3>
+        <div class="card-sub">Impact of 5 unclosed historical encounters (74.2–20,215.2 days)</div>
+        <div class="chart-box"><canvas id="losAuditChart"></canvas></div>
+        <div class="insight teal">Excluding 5 EHR outliers restores inpatient LOS from <b>18.04d raw</b> to <b>1.09d clean (1.00 O/E ratio)</b>.</div>
       </div>
     </div>
-  </section>
-</main>
+  </div>
+</section>
+
+<!-- PILLAR 2: RISK STRATIFICATION -->
+<section id="risk" class="alt">
+  <div class="container">
+    <div class="section-head reveal">
+      <span class="kicker">Pillar 2 · Patient Risk Stratification</span>
+      <h2>94.8% of readmissions cluster in two High-Risk adult tiers</h2>
+      <p>Stratifying 1,838 inpatient stays across Clinical Risk Tier × Age Cohort isolates extreme concentration—plus a hidden Moderate-Risk Pediatric signal representing 100% of non-High-Risk readmissions.</p>
+    </div>
+    <div class="grid-2">
+      <div class="card reveal">
+        <h3>Risk Tier × Age Cohort Readmission Matrix</h3>
+        <div class="card-sub">Full scope (n = 1,838 inpatient stays · 439 readmissions)</div>
+        <div class="risk-matrix">
+          <div></div>
+          <div class="rm-head">Pediatric</div>
+          <div class="rm-head">Young Adult</div>
+          <div class="rm-head">Middle-Aged</div>
+          <div class="rm-head">Senior</div>
+
+          <div class="rm-label">High<br>Risk</div>
+          <div class="rm-cell rm-teal"><div class="n">0.0%</div><div class="t">0 / 1 stay</div><div class="e">$1.4K leak</div></div>
+          <div class="rm-cell rm-teal"><div class="n">4.6%</div><div class="t">13 / 284</div><div class="e">$33.8K leak</div></div>
+          <div class="rm-cell rm-red"><div class="n">39.0%</div><div class="t">203 / 520</div><div class="e">$148.5K leak</div></div>
+          <div class="rm-cell rm-red"><div class="n">25.8%</div><div class="t">213 / 825</div><div class="e">$288.3K leak</div></div>
+
+          <div class="rm-label">Moderate<br>Risk</div>
+          <div class="rm-cell rm-amber"><div class="n">20.4%</div><div class="t">10 / 49</div><div class="e">$9.9K leak</div></div>
+          <div class="rm-cell rm-teal"><div class="n">0.0%</div><div class="t">0 / 71</div><div class="e">$32.8K leak</div></div>
+          <div class="rm-cell rm-teal"><div class="n">0.0%</div><div class="t">0 / 37</div><div class="e">$18.8K leak</div></div>
+          <div class="rm-cell rm-teal"><div class="n">0.0%</div><div class="t">0 / 30</div><div class="e">$9.3K leak</div></div>
+
+          <div class="rm-label">Low<br>Risk</div>
+          <div class="rm-cell rm-teal"><div class="n">0.0%</div><div class="t">0 / 2</div><div class="e">$8.9K leak</div></div>
+          <div class="rm-cell rm-teal"><div class="n">0.0%</div><div class="t">0 / 13</div><div class="e">$28.1K leak</div></div>
+          <div class="rm-cell rm-teal"><div class="n">0.0%</div><div class="t">0 / 6</div><div class="e">$6.8K leak</div></div>
+          <div class="rm-cell rm-slate"><div class="n">—</div><div class="t">0 stays</div><div class="e">$0.9K leak</div></div>
+        </div>
+        <div class="insight amber" style="margin-top:18px;"><b>Moderate-Risk Pediatric (20.4%, 10/49 stays)</b> accounts for 100% of all non-High-Risk readmissions, while Low-Risk has <b>0 readmissions</b>.</div>
+      </div>
+      <div class="card reveal">
+        <h3>Margin Leakage by Risk Tier × Age Cohort</h3>
+        <div class="card-sub">Total uncovered claim cost ($K) across cohorts</div>
+        <div class="chart-box" style="height:330px"><canvas id="riskLeakageChart"></canvas></div>
+        <div class="insight red"><b>High-Risk Senior ($288.3K)</b> and <b>High-Risk Middle-Aged ($148.5K)</b> represent <b>74.3%</b> of all system margin leakage.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PILLAR 3: PAYER MIX -->
+<section id="payers">
+  <div class="container">
+    <div class="section-head reveal">
+      <span class="kicker">Pillar 3 · Payer Mix &amp; Financial Exposure</span>
+      <h2>Medicare &amp; Self-Pay drive 46.4% of uncovered claim leakage</h2>
+      <p>Evaluating payer coverage rate alongside inpatient readmission rate exposes HRRP penalty risk on Medicare and uncompensated care gaps on Self-Pay.</p>
+    </div>
+    <div class="grid-2">
+      <div class="card reveal">
+        <h3>Uncovered Claim Cost by Payer ($587.5K Total)</h3>
+        <div class="card-sub">Margin leakage ranked across all 10 payers</div>
+        <div class="chart-box" style="height:360px"><canvas id="payerLeakageChart"></canvas></div>
+        <div class="insight red"><b>Medicare ($180.1K, 32.4% readm)</b> and <b>Self-Pay ($92.6K, 0% cov)</b> require immediate dual clinical-financial navigation.</div>
+      </div>
+      <div class="card reveal" style="overflow-x:auto;">
+        <h3>Payer Performance &amp; Exposure Table</h3>
+        <div class="card-sub" id="payer-table-sub">Full Historical Scope (n = 6,301 encounters)</div>
+        <table>
+          <thead>
+            <tr>
+              <th>Payer</th><th class="num">Enc.</th><th class="num">Inpt.</th>
+              <th class="num">Readm.</th><th class="num">Cov.</th><th class="num">Leakage</th>
+            </tr>
+          </thead>
+          <tbody id="payer-tbody"></tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- DASHBOARD GALLERY -->
+<section id="dashboard" class="alt">
+  <div class="container">
+    <div class="section-head reveal">
+      <span class="kicker">The Deliverable</span>
+      <h2>Four executive views from the Tableau workbook</h2>
+      <p>Portable analytical views backed by DuckDB SQL ETL and verified against exact computed totals in <code>data/analysis_summary.json</code>.</p>
+    </div>
+    <div class="gallery">
+      <div class="shot reveal"><img src="assets/view1_annual_trend.svg" alt="Annual Encounter Volume and 30-Day Readmission Trend"><div class="cap"><b>View 1 · Annual Volume &amp; Readmission Trend (2011–2020)</b> — Urgent care channel growth paired with chronic 15% readmission goal breaches</div></div>
+      <div class="shot reveal"><img src="assets/view2_clinical_drivers.svg" alt="Top 10 Clinical Drivers of Inpatient Readmissions"><div class="cap"><b>View 2 · Top 10 Clinical Drivers of Readmissions</b> — 97.9% oncology concentration led by NSCLC/Breast (351) and Stage 1 SCLC (96.8% rate)</div></div>
+      <div class="shot reveal"><img src="assets/view3_risk_heatmap.svg" alt="Risk Tier x Age Cohort Heatmap"><div class="cap"><b>View 3 · Risk Tier × Age Cohort Heatmap</b> — 94.8% concentration in High-Risk Middle-Aged (39.0%) and Senior (25.8%) plus Moderate Pediatric signal</div></div>
+      <div class="shot reveal"><img src="assets/view4_payer_quadrant.svg" alt="Payer Coverage vs Readmission Quadrant"><div class="cap"><b>View 4 · Payer Coverage vs. Readmission Quadrant</b> — Medicare &amp; Self-Pay exposure vs. optimal quadrant performers (Cigna &amp; UnitedHealthcare)</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- METHOD -->
+<section id="method">
+  <div class="container">
+    <div class="section-head reveal">
+      <span class="kicker">How It Was Built</span>
+      <h2>From synthetic Synthea EHR data to executive strategy</h2>
+    </div>
+    <div class="pipeline reveal">
+      <div class="step"><div class="s-num">1</div><h4>Ingest</h4><p>6,301 acute encounters across 941 Synthea patients.</p></div>
+      <div class="step"><div class="s-num">2</div><h4>Window SQL</h4><p>DuckDB <code>LEAD()</code> tracks 30-day inpatient readmissions.</p></div>
+      <div class="step"><div class="s-num">3</div><h4>Audit LOS</h4><p><code>AVG() OVER()</code> O/E benchmarks + <code>is_los_outlier</code> flags.</p></div>
+      <div class="step"><div class="s-num">4</div><h4>Star Schema</h4><p><code>fact_encounters_v1</code> &amp; <code>dim_patients_v1</code> modeled cleanly.</p></div>
+      <div class="step"><div class="s-num">5</div><h4>Visualize</h4><p>4-view Tableau <code>.twbx</code> workbook &amp; interactive web report.</p></div>
+    </div>
+
+    <div class="stack" style="margin-top: 40px">
+      <div class="card reveal"><h3>DuckDB SQL ETL</h3><ul><li>LEAD() 30d readmissions</li><li>AVG() OVER() O/E LOS</li><li>Outlier flagging</li><li>Star-schema exports</li></ul></div>
+      <div class="card reveal"><h3>Tableau Workbook</h3><ul><li>4 executive views</li><li>Calculated KPI parity</li><li>Scope filtering</li><li>Packaged .twbx</li></ul></div>
+      <div class="card reveal"><h3>Revenue Cycle</h3><ul><li>Margin leakage audit</li><li>Payer coverage matrix</li><li>HRRP risk exposure</li><li>Self-Pay screening</li></ul></div>
+      <div class="card reveal"><h3>Reproducibility</h3><ul><li>HIPAA-safe Synthea data</li><li>analysis_summary.json</li><li>Python SVG generator</li><li>GitHub Pages live app</li></ul></div>
+    </div>
+  </div>
+</section>
+
+<!-- ACTIONS -->
+<section id="actions" class="alt">
+  <div class="container">
+    <div class="section-head reveal">
+      <span class="kicker">Strategic Recommendations</span>
+      <h2>Five quantified clinical, financial, and data-ops actions</h2>
+    </div>
+    <div class="card reveal">
+      <div class="rec"><div class="p">1</div><div><h4>Oncology Transitional Care &amp; Outpatient Infusion</h4><p>Deploy 72-hour post-discharge nurse navigation and shift cyclical SCLC/breast stays to outpatient infusion.</p></div><div class="roi">40–60% Cut<small>430 oncology readmissions</small></div></div>
+      <div class="rec"><div class="p">2</div><div><h4>Self-Pay Medicaid Presumptive Eligibility Screening</h4><p>Screen uninsured admissions ($92.6K leakage, 0% coverage) at intake for Medicaid (38.3% coverage).</p></div><div class="roi">$30K–$35K+<small>Annual margin recovered</small></div></div>
+      <div class="rec"><div class="p">3</div><div><h4>Medicare HRRP Protection &amp; BCBS Contract Audit</h4><p>Pair High-Risk Senior care management with BCBS denial audits to lift coverage above 25.8%.</p></div><div class="roi">$256.5K<small>43.7% of total leakage</small></div></div>
+      <div class="rec"><div class="p">4</div><div><h4>Targeted Moderate-Risk Pediatric Discharge Audit</h4><p>Review the 10 pediatric readmissions (20.4% rate) to close gaps in the sole non-High-Risk readmission tier.</p></div><div class="roi">100% Signal<small>Non-High-Risk readmissions</small></div></div>
+      <div class="rec"><div class="p">5</div><div><h4>Automated EHR 30-Day Open-Encounter Closure Checks</h4><p>Flag unclosed encounter timestamps in ETL pipelines to eliminate 74–20,215 day LOS distortions.</p></div><div class="roi">16.5× Fix<small>18.04d raw → 1.09d clean</small></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta">
+  <div class="container">
+    <div class="cta-box reveal">
+      <h2>Explore the SQL ETL &amp; Tableau Workbook</h2>
+      <p>The DuckDB SQL pipeline, computed JSON metrics, SVG chart generator, and packaged Tableau workbook are all open on GitHub.</p>
+      <div class="hero-actions">
+        <a class="btn btn-primary" href="https://github.com/ahmedelsayed7115/healthcare-operations-report" target="_blank" rel="noopener">View Repository</a>
+        <a class="btn btn-ghost" href="https://github.com/ahmedelsayed7115/healthcare-operations-report/blob/main/scripts/build_healthcare_dw.sql" target="_blank" rel="noopener">Read DuckDB SQL</a>
+      </div>
+    </div>
+  </div>
+</section>
 
 <footer>
   <div class="container">
-    Generated from <code>Healthcare_Operations_Readmission_Dashboard.twbx</code> •
-    <a href="https://github.com/ahmedelsayed7115/healthcare-operations-report">View Full Markdown Report &amp; Source on GitHub</a>
+    <span>© 2026 Ahmed Elsayed · Healthcare Operations &amp; 30-Day Readmission Intelligence</span>
+    <span>Data: 100% synthetic MITRE Synthea™ Massachusetts EHR Cohort (6,301 encounters)</span>
   </div>
 </footer>
 
 <script>
-const SCOPES = {
-  all: {
-    readm: "23.88%", readmSub: "439 readmissions / 1,838 inpatient stays", readmBadge: "+8.88 pts vs. 15.0% goal",
-    oe: "1.00", oeSub: "1.09d clean avg LOS (18.04d raw; 5 outliers)",
-    leak: "$587,546", leakSub: "74.19% uncovered • 25.81% payer coverage",
-    hr: "97.72%", hrSub: "429 of 439 readmissions (78.8% of encounters)"
-  },
-  op: {
-    readm: "19.03%", readmSub: "207 readmissions / 1,088 inpatient stays", readmBadge: "+4.03 pts vs. 15.0% goal",
-    oe: "0.97", oeSub: "1.05d clean avg LOS (1.11d raw; 1 outlier)",
-    leak: "$358,483", leakSub: "74.20% uncovered • 25.80% payer coverage",
-    hr: "96.62%", hrSub: "200 of 207 readmissions (70.7% of encounters)"
+  // ---------- Scope Data ----------
+  const SCOPES = {
+    all: {
+      subLabel: "Full Historical Scope (n = 6,301 encounters)",
+      readm: 23.88, readmSub: "439 / 1,838 stays (+8.88 pts vs 15% goal)",
+      leak: 587.55, leakSub: "74.19% uncovered · 25.81% payer coverage",
+      hr: 97.72, hrSub: "429 of 439 readmissions (78.8% encounters)",
+      oe: 1.00, oeSub: "1.09d clean avg LOS (vs. 18.04d raw; 5 outliers)",
+      payers: [
+        ["Medicare", 2022, 444, "32.4%", "31.0%", "$180,115", true],
+        ["Self-Pay / Uncomp.", 746, 310, "29.0%", "0.0%", "$92,581", true],
+        ["Blue Cross Blue Shield", 790, 293, "25.6%", "23.4%", "$76,419", false],
+        ["Medicaid", 955, 329, "18.5%", "38.3%", "$71,754", false],
+        ["Humana", 457, 151, "15.9%", "20.6%", "$43,167", false],
+        ["Cigna Health", 463, 108, "10.2%", "27.4%", "$42,857", false],
+        ["UnitedHealthcare", 403, 129, "13.2%", "30.9%", "$34,244", false],
+        ["Aetna", 266, 46, "37.0%", "32.3%", "$22,872", false],
+        ["Dual Eligible", 153, 26, "0.0%", "10.3%", "$17,594", false],
+        ["Anthem", 46, 2, "0.0%", "0.0%", "$5,941", false]
+      ]
+    },
+    op: {
+      subLabel: "Operational Window 2011–2020 (n = 3,814 encounters)",
+      readm: 19.03, readmSub: "207 / 1,088 stays (+4.03 pts vs 15% goal)",
+      leak: 358.48, leakSub: "74.20% uncovered · 25.80% payer coverage",
+      hr: 96.62, hrSub: "200 of 207 readmissions (70.7% encounters)",
+      oe: 0.97, oeSub: "1.05d clean avg LOS (1.11d raw; 1 outlier)",
+      payers: [
+        ["Medicare", 1114, 176, "9.1%", "25.6%", "$106,972", true],
+        ["Self-Pay / Uncomp.", 435, 177, "30.5%", "0.0%", "$55,255", true],
+        ["Blue Cross Blue Shield", 524, 245, "29.4%", "28.1%", "$47,803", false],
+        ["Medicaid", 577, 171, "21.6%", "42.2%", "$42,297", false],
+        ["Humana", 307, 87, "0.0%", "17.5%", "$29,588", false],
+        ["UnitedHealthcare", 288, 114, "14.9%", "33.1%", "$23,473", false],
+        ["Cigna Health", 267, 91, "12.1%", "35.1%", "$22,314", false],
+        ["Dual Eligible", 127, 18, "0.0%", "9.1%", "$14,916", false],
+        ["Aetna", 139, 8, "0.0%", "37.3%", "$11,216", false],
+        ["Anthem", 36, 1, "0.0%", "0.0%", "$4,650", false]
+      ]
+    }
+  };
+
+  function renderPayerTable(key) {
+    const sc = SCOPES[key];
+    document.getElementById("payer-table-sub").textContent = sc.subLabel;
+    document.getElementById("payer-tbody").innerHTML = sc.payers.map(r => `
+      <tr class="${r[6] ? 'highlight' : ''}">
+        <td><strong>${r[0]}</strong></td>
+        <td class="num">${r[1].toLocaleString()}</td>
+        <td class="num">${r[2].toLocaleString()}</td>
+        <td class="num">${r[3]}</td>
+        <td class="num">${r[4]}</td>
+        <td class="num"><strong>${r[5]}</strong></td>
+      </tr>`).join("");
   }
-};
+  renderPayerTable("all");
 
-const PAYERS = [
-  ["Medicare", "Insured", 2022, 444, 144, "32.4%", "31.0%", "$180,115"],
-  ["Self-Pay / Uncompensated", "Self-Pay", 746, 310, 90, "29.0%", "0.0%", "$92,581"],
-  ["Blue Cross Blue Shield", "Insured", 790, 293, 75, "25.6%", "23.4%", "$76,419"],
-  ["Medicaid", "Insured", 955, 329, 61, "18.5%", "38.3%", "$71,754"],
-  ["Humana", "Insured", 457, 151, 24, "15.9%", "20.6%", "$43,167"],
-  ["Cigna Health", "Insured", 463, 108, 11, "10.2%", "27.4%", "$42,857"],
-  ["UnitedHealthcare", "Insured", 403, 129, 17, "13.2%", "30.9%", "$34,244"],
-  ["Aetna", "Insured", 266, 46, 17, "37.0%", "32.3%", "$22,872"],
-  ["Dual Eligible", "Insured", 153, 26, 0, "0.0%", "10.3%", "$17,594"],
-  ["Anthem", "Insured", 46, 2, 0, "0.0%", "0.0%", "$5,941"]
-];
+  let payerChartInst = null;
+  function setScope(key) {
+    const s = SCOPES[key];
+    document.getElementById("btn-all").classList.toggle("active", key === "all");
+    document.getElementById("btn-op").classList.toggle("active", key === "op");
+    document.getElementById("kpi-readm").textContent = s.readm.toFixed(2) + "%";
+    document.getElementById("kpi-readm-sub").textContent = s.readmSub;
+    document.getElementById("kpi-leak").textContent = "$" + s.leak.toFixed(2) + "K";
+    document.getElementById("kpi-leak-sub").textContent = s.leakSub;
+    document.getElementById("kpi-hr").textContent = s.hr.toFixed(2) + "%";
+    document.getElementById("kpi-hr-sub").textContent = s.hrSub;
+    document.getElementById("kpi-oe").textContent = s.oe.toFixed(2) + "×";
+    document.getElementById("kpi-oe-sub").textContent = s.oeSub;
+    renderPayerTable(key);
+    if (payerChartInst) {
+      const vals = s.payers.map(r => parseInt(r[5].replace(/[$,]/g, '')));
+      payerChartInst.data.labels = s.payers.map(r => r[0]);
+      payerChartInst.data.datasets[0].data = vals;
+      payerChartInst.update();
+    }
+  }
 
-document.getElementById("payer-tbody").innerHTML = PAYERS.map(r => `
-  <tr>
-    <td><strong>${r[0]}</strong></td><td>${r[1]}</td>
-    <td class="num">${r[2].toLocaleString()}</td><td class="num">${r[3].toLocaleString()}</td>
-    <td class="num">${r[4]}</td><td class="num">${r[5]}</td><td class="num">${r[6]}</td><td class="num"><strong>${r[7]}</strong></td>
-  </tr>`).join("");
+  // ---------- Reveal on scroll ----------
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) { e.target.classList.add('visible'); io.unobserve(e.target); }
+    });
+  }, { threshold: 0.12 });
+  document.querySelectorAll('.reveal').forEach(el => io.observe(el));
 
-function setScope(key) {
-  const s = SCOPES[key];
-  document.getElementById("btn-all").classList.toggle("active", key === "all");
-  document.getElementById("btn-op").classList.toggle("active", key === "op");
-  document.getElementById("kpi-readm").textContent = s.readm;
-  document.getElementById("kpi-readm-sub").textContent = s.readmSub;
-  document.getElementById("kpi-readm-badge").textContent = s.readmBadge;
-  document.getElementById("kpi-oe").textContent = s.oe;
-  document.getElementById("kpi-oe-sub").textContent = s.oeSub;
-  document.getElementById("kpi-leak").textContent = s.leak;
-  document.getElementById("kpi-leak-sub").textContent = s.leakSub;
-  document.getElementById("kpi-hr").textContent = s.hr;
-  document.getElementById("kpi-hr-sub").textContent = s.hrSub;
-}
+  // ---------- Animated KPI counters ----------
+  function animateCount(el) {
+    const target = parseFloat(el.dataset.count);
+    const dec = parseInt(el.dataset.dec || 0);
+    const pre = el.dataset.prefix || '';
+    const suf = el.dataset.suffix || '';
+    const dur = 1400;
+    const start = performance.now();
+    function tick(now) {
+      const p = Math.min((now - start) / dur, 1);
+      const eased = 1 - Math.pow(1 - p, 3);
+      el.textContent = pre + (target * eased).toFixed(dec) + suf;
+      if (p < 1) requestAnimationFrame(tick);
+    }
+    requestAnimationFrame(tick);
+  }
+  const kpiObserver = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) { animateCount(e.target); kpiObserver.unobserve(e.target); }
+    });
+  }, { threshold: 0.5 });
+  document.querySelectorAll('[data-count]').forEach(el => kpiObserver.observe(el));
+
+  // ---------- Charts ----------
+  Chart.defaults.color = '#93A3BC';
+  Chart.defaults.font.family = "'Inter', 'Segoe UI', sans-serif";
+  Chart.defaults.borderColor = 'rgba(147,163,188,0.12)';
+  Chart.defaults.plugins.legend.labels.boxWidth = 12;
+
+  const C = { blue: '#3F72AF', red: '#EF4444', teal: '#14B8A6', amber: '#F59E0B', slate: '#64748B' };
+  const moneyK = v => '$' + (v / 1000).toFixed(0) + 'K';
+
+  const chartFactories = {
+    annualTrendChart: (ctx) => new Chart(ctx, {
+      data: {
+        labels: ['2011','2012','2013','2014','2015','2016','2017','2018','2019','2020*'],
+        datasets: [
+          { type: 'line', label: 'Readmission Rate (%)', data: [15.7,12.0,23.1,22.0,26.8,25.3,10.3,25.0,15.6,5.6], borderColor: C.red, backgroundColor: C.red, yAxisID: 'y1', tension: 0.35, pointRadius: 4, borderWidth: 3 },
+          { type: 'bar', label: 'Inpatient', data: [166,117,104,109,112,95,87,140,122,36], backgroundColor: C.blue, stack: 'v', borderRadius: 3 },
+          { type: 'bar', label: 'Emergency', data: [131,134,159,159,147,133,157,125,125,39], backgroundColor: C.amber, stack: 'v', borderRadius: 3 },
+          { type: 'bar', label: 'Urgent Care', data: [142,139,141,145,147,151,173,151,170,58], backgroundColor: C.teal, stack: 'v', borderRadius: 3 }
+        ]
+      },
+      options: {
+        maintainAspectRatio: false,
+        plugins: { legend: { position: 'bottom' } },
+        scales: {
+          y: { stacked: true, title: { display: true, text: 'Encounters' } },
+          y1: { position: 'right', min: 0, max: 35, grid: { drawOnChartArea: false }, ticks: { callback: v => v + '%' } },
+          x: { grid: { display: false } }
+        }
+      }
+    }),
+    driversChart: (ctx) => new Chart(ctx, {
+      type: 'bar',
+      data: {
+        labels: ['NSCLC & Breast (Problem)', 'Breast Neoplasm', 'Small Cell Lung (Stage 1)', 'Impacted Molars', 'Breast Follow-Up', 'Periodic Reevaluation', 'Chronic Migraine', 'Chronic Pain'],
+        datasets: [{
+          data: [351, 41, 30, 5, 4, 3, 2, 1],
+          backgroundColor: (c) => c.dataIndex < 3 ? C.red : C.blue,
+          borderRadius: 6
+        }]
+      },
+      options: {
+        indexAxis: 'y', maintainAspectRatio: false,
+        plugins: { legend: { display: false }, tooltip: { callbacks: { label: c => c.raw + ' 30-day readmissions' } } },
+        scales: { x: { title: { display: true, text: '30-Day Readmissions' } }, y: { ticks: { font: { size: 11 } }, grid: { display: false } } }
+      }
+    }),
+    serviceLineChart: (ctx) => new Chart(ctx, {
+      type: 'bar',
+      data: {
+        labels: ['General Medicine', 'Obstetrics', 'Cardiology', 'Pulmonology', 'Orthopedics'],
+        datasets: [{
+          label: 'Margin Leakage ($)',
+          data: [538148, 19795, 19670, 7937, 1997],
+          backgroundColor: [C.red, C.blue, C.blue, C.amber, C.teal],
+          borderRadius: 6
+        }]
+      },
+      options: {
+        maintainAspectRatio: false,
+        plugins: { legend: { display: false }, tooltip: { callbacks: { label: c => moneyK(c.raw) + ' uncovered' } } },
+        scales: { y: { ticks: { callback: moneyK } }, x: { grid: { display: false } } }
+      }
+    }),
+    losAuditChart: (ctx) => new Chart(ctx, {
+      type: 'bar',
+      data: {
+        labels: ['Raw Avg LOS (w/ 5 Outliers)', 'Clean Avg LOS (O/E = 1.00)', '2011–2020 Clean LOS (O/E = 0.97)'],
+        datasets: [{
+          data: [18.04, 1.09, 1.05],
+          backgroundColor: [C.red, C.teal, C.teal],
+          borderRadius: 8
+        }]
+      },
+      options: {
+        maintainAspectRatio: false,
+        plugins: { legend: { display: false }, tooltip: { callbacks: { label: c => c.raw + ' days' } } },
+        scales: { y: { ticks: { callback: v => v + 'd' } }, x: { grid: { display: false } } }
+      }
+    }),
+    riskLeakageChart: (ctx) => new Chart(ctx, {
+      type: 'bar',
+      data: {
+        labels: ['Senior', 'Middle-Aged', 'Young Adult', 'Pediatric'],
+        datasets: [
+          { label: 'High Risk', data: [288326, 148511, 33754, 1425], backgroundColor: C.red, borderRadius: 6 },
+          { label: 'Moderate Risk', data: [9331, 18793, 32798, 9851], backgroundColor: C.amber, borderRadius: 6 },
+          { label: 'Low Risk', data: [902, 6835, 28079, 8940], backgroundColor: C.teal, borderRadius: 6 }
+        ]
+      },
+      options: {
+        maintainAspectRatio: false,
+        plugins: { legend: { position: 'bottom' }, tooltip: { callbacks: { label: c => c.dataset.label + ': ' + moneyK(c.raw) } } },
+        scales: { y: { ticks: { callback: moneyK } }, x: { grid: { display: false } } }
+      }
+    }),
+    payerLeakageChart: (ctx) => {
+      payerChartInst = new Chart(ctx, {
+        type: 'bar',
+        data: {
+          labels: SCOPES.all.payers.map(r => r[0]),
+          datasets: [{
+            data: [180115, 92581, 76419, 71754, 43167, 42857, 34244, 22872, 17594, 5941],
+            backgroundColor: (c) => c.dataIndex < 2 ? C.red : (c.dataIndex < 4 ? C.amber : C.blue),
+            borderRadius: 6
+          }]
+        },
+        options: {
+          indexAxis: 'y', maintainAspectRatio: false,
+          plugins: { legend: { display: false }, tooltip: { callbacks: { label: c => '$' + c.raw.toLocaleString() + ' uncovered' } } },
+          scales: { x: { ticks: { callback: moneyK } }, y: { grid: { display: false } } }
+        }
+      });
+      return payerChartInst;
+    }
+  };
+
+  const chartObserver = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        chartFactories[e.target.id](e.target);
+        chartObserver.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.25 });
+  Object.keys(chartFactories).forEach(id => {
+    const el = document.getElementById(id);
+    if (el) chartObserver.observe(el);
+  });
 </script>
 </body>
 </html>

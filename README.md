@@ -1,5 +1,10 @@
 # Healthcare Operations & 30-Day Readmission Executive Report
 
+[![Tableau](https://img.shields.io/badge/Tableau-Packaged_Workbook-E97627?logo=tableau&logoColor=white)](Healthcare_Operations_Readmission_Dashboard.twbx)
+[![DuckDB](https://img.shields.io/badge/DuckDB-SQL_ETL-FFF000?logo=duckdb&logoColor=black)](scripts/build_healthcare_dw.sql)
+[![Live Landing Page](https://img.shields.io/badge/GitHub_Pages-Live_Showcase-14B8A6?logo=github&logoColor=white)](https://ahmedelsayed7115.github.io/healthcare-operations-report/)
+[![Status](https://img.shields.io/badge/Status-Executive_Ready-success)]()
+
 > **Source Workbook:** [`Healthcare_Operations_Readmission_Dashboard.twbx`](Healthcare_Operations_Readmission_Dashboard.twbx) *(Tableau Public interactive link coming soon — download `.twbx` to inspect locally)*  
 > **Scope:** 6,301 acute encounters across 941 unique Massachusetts patients (Full Historical Scope: 1923–2020; Operational Window: 2011–2020, n = 3,814)  
 > **Live Interactive Dashboard:** [View on GitHub Pages](https://ahmedelsayed7115.github.io/healthcare-operations-report/)
